@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+@font-face {
+    src: url("/fonts/Metropolis-Regular.woff2") format("woff2"),
+         url("/fonts/Metropolis-Regular.woff") format("woff");
+
+    font-family: NZMetropolis;
+}
+@font-face {
+    src: url("/fonts/Metropolis-Light.woff2") format("woff2"),
+         url("/fonts/Metropolis-Light.woff") format("woff");
+
+    font-family: NZMetropolis;
+    font-weight: 200;
+}
+@font-face {
+    src: url("/fonts/Metropolis-ExtraBold.woff2") format("woff2"),
+         url("/fonts/Metropolis-ExtraBold.woff") format("woff");
+
+    font-family: NZMetropolis;
+    font-weight: 800;
+}
