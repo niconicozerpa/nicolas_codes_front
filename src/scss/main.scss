@@ -31,3 +31,18 @@ $family-primary: NZMetropolis, sans-serif;
 }
 
 .label { font-weight: normal; }
+
+div.bottom-notif {
+    display: none;
+    position: fixed;
+    left: 4rem;
+    right: 4rem;
+    bottom: 2rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+div.bottom-notif.is-visible {
+    display: flex;
+}

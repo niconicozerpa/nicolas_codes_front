@@ -44,15 +44,48 @@ export function Hero() {
     );
 }
 
+export function Notification(props) {
+    return (
+        <div className={"bottom-notif" + (props.message ? " is-visible":"") }>
+            <div className="notification is-primary">
+                <button className="delete" type="button" onClick={props.onClose}></button>
+                {props.message}
+            </div>
+        </div>
+    );
+}
+
 export class ContactMeForm extends React.Component {
     constructor(props) {
         super(props);
         this.cancel = this.cancel.bind(this);
+        this.submit = this.submit.bind(this);
+        this.updateInput = this.updateInput.bind(this);
+
+        this.state = {
+            "full_name": "",
+            "email": "",
+            "website": "",
+            "contents": ""
+        };
+    }
+
+    submit(e) {
+        e.preventDefault();
+        if (!this.props.submitting) {
+            this.props.onSubmit(Object.assign({}, this.state));
+        }
     }
 
     cancel(e) {
         e.preventDefault();
         this.props.onCancel();
+    }
+
+    updateInput(e) {
+        const new_state = {};
+        new_state[e.target.name] = e.target.value;
+        this.setState(new_state);
     }
 
     render() {
@@ -63,38 +96,50 @@ export class ContactMeForm extends React.Component {
                     <div className="card">
                         <div className="card-content">
                             <div className="title">Contact Me</div>
-                            <form>
+                            <form onSubmit={this.submit}>
                                 <div className="field">
                                     <label className="label">Name *</label>
                                     <div className="control">
-                                        <input className="input" type="text" name="full_name" required />
+                                        <input
+                                            value={this.state.full_name}
+                                            onChange={this.updateInput}
+                                            className="input" type="text" name="full_name" required />
                                     </div>
                                 </div>
                                 <div className="field">
                                     <label className="label">Email *</label>
                                     <div className="control">
-                                        <input className="input" type="email" name="email" required />
+                                        <input
+                                            value={this.state.email}
+                                            onChange={this.updateInput}
+                                            className="input" type="email" name="email" required />
                                     </div>
                                 </div>
                                 <div className="field">
                                     <label className="label">Website</label>
                                     <div className="control">
-                                        <input className="input" type="text" name="website" />
+                                        <input
+                                            value={this.state.website}
+                                            onChange={this.updateInput}
+                                            className="input" type="text" name="website" />
                                     </div>
                                 </div>
                                 <div className="field">
                                     <label className="label">Your Message:</label>
                                     <div className="control">
-                                        <textarea className="textarea" name="contents"></textarea>
+                                        <textarea className="textarea" name="contents" onChange={this.updateInput} value={this.state.contents}></textarea>
                                     </div>
                                 </div>
 
                                 <div className="field is-grouped">
                                     <div className="control">
-                                        <button className="button is-link">Submit</button>
+                                        <button type="submit" className={
+                                            "button is-link" +
+                                            (this.props.submitting ? " is-loading":"")
+                                        }>Submit</button>
                                     </div>
                                     <div className="control">
-                                        <button onClick={this.cancel} className="button is-text">Cancel</button>
+                                        <button type="button" onClick={this.cancel} className="button is-text">Cancel</button>
                                     </div>
                                 </div>
                             </form>
