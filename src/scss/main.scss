@@ -46,3 +46,41 @@ div.bottom-notif {
 div.bottom-notif.is-visible {
     display: flex;
 }
+
+span.bandera-argentina {
+    border: 1px solid;
+    display: inline-block;
+    height: 18px;
+    width: calc(18px * 8/5);
+    vertical-align: middle;
+    margin-right: 5px;
+    background-color: #FFF;
+    position: relative;
+    
+    &:before,
+    &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: calc(18px / 3);
+        left: 0px;
+        top: 0px;
+        background-color: rgb(116, 172, 223);
+    }
+
+    &:after {
+        top: auto;
+        bottom: 0px;
+    }
+    .sol-de-mayo {
+        background-color: rgb(246, 180, 14);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 2.5px;
+        transform: translate(-50%, -50%);
+        width: 2.5px;
+        height: 2.5px;
+    }
+}

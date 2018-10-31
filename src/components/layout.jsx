@@ -43,6 +43,22 @@ export function Hero() {
     );
 }
 
+export function Footer() {
+    return (
+        <footer className="footer">
+        <div className="content has-text-centered">
+            <div>© 2018 Raúl Nicolás López Zerpa</div>
+            <div>
+                <span className="bandera-argentina">
+                    <span className="sol-de-mayo"></span>
+                </span>
+                Made in Argentina
+            </div>
+        </div>
+        </footer>
+    );
+}
+
 export function Notification(props) {
     return (
         <div className={"bottom-notif" + (props.message ? " is-visible":"") }>

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Header, Hero, ContactMeForm, Notification } from "./layout.jsx";
+import { Header, Hero, ContactMeForm, Notification, Footer } from "./layout.jsx";
 
 
 export class App extends React.Component {
@@ -73,6 +73,7 @@ export class App extends React.Component {
                 <Header
                     onShowContactForm={this.showContactForm}/>
                 <Hero/>
+                <Footer/>
                 <ContactMeForm
                     active={this.state.contact_form_active}
                     submitting={this.state.contact_form_submitting}
