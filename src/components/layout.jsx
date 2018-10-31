@@ -14,7 +14,7 @@ export class Header extends React.Component {
     }
     render() {
         return (
-        <nav className="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <div className="navbar-item">
                     <h1 className="title">Nicolas Zerpa</h1>
@@ -22,7 +22,7 @@ export class Header extends React.Component {
             </div>
             <div className="navbar-end">
                 <div className="navbar-item">
-                    <a href="" onClick={this.showContactForm} className="is-dark is-small button">Contact Me</a>
+                    <a href="" onClick={this.showContactForm} className="is-light is-small button">Contact Me</a>
                 </div>
             </div>
         </nav>
@@ -32,7 +32,7 @@ export class Header extends React.Component {
 
 export function Hero() {
     return (
-        <section className="hero is-medium is-light">
+        <section className="hero is-medium is-dark">
             <div className="hero-body">
                 <div className="container">
                     <h1 className="title">Full-stack Web Developer</h1>
@@ -46,15 +46,15 @@ export function Hero() {
 export function Footer() {
     return (
         <footer className="footer">
-        <div className="content has-text-centered">
-            <div>© 2018 Raúl Nicolás López Zerpa</div>
-            <div>
-                <span className="bandera-argentina">
-                    <span className="sol-de-mayo"></span>
-                </span>
-                Made in Argentina
+            <div className="content has-text-centered">
+                <div>© 2018 Raúl Nicolás López Zerpa</div>
+                <div>
+                    <span className="bandera-argentina">
+                        <span className="sol-de-mayo"></span>
+                    </span>
+                    Made in Argentina
+                </div>
             </div>
-        </div>
         </footer>
     );
 }
