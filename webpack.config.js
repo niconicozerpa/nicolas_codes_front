@@ -1,5 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
+const dotenv = require("dotenv");
+const fs = require("fs");
+
+const environment_type = dotenv.parse(fs.readFileSync("./settings/environment.env"));
+const environment =  dotenv.parse(fs.readFileSync("./settings/" + environment_type.ENVIRONMENT + ".env"));
+
 
 module.exports = {
   entry: "./src/index.js",
@@ -34,5 +40,12 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        "SERVICE_ENDPOINT": JSON.stringify(environment.SERVICE_ENDPOINT)
+      }
+    })
+  ]
 };

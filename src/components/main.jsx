@@ -34,7 +34,7 @@ export class App extends React.Component {
     submitContactForm(data) {
         this.setState({"contact_form_submitting": true });
         fetch(
-            "https://srv1.nicolas.codes/be/",
+            process.env.SERVICE_ENDPOINT,
             {
                 "method": "POST",
                 "headers": {
