@@ -3,6 +3,7 @@
 import React from "react";
 
 import { Header, Hero, ContactMeForm, Notification, Footer } from "./layout.jsx";
+import { MySkills } from "./home";
 
 
 export class App extends React.Component {
@@ -72,7 +73,16 @@ export class App extends React.Component {
             <div>
                 <Header
                     onShowContactForm={this.showContactForm}/>
+                
                 <Hero/>
+                
+                <section className="section">
+                    <div className="container">
+                        <h1 className="title">My Skills</h1>
+                        <MySkills/>
+                    </div>
+                </section>
+                
                 <Footer/>
                 <ContactMeForm
                     active={this.state.contact_form_active}

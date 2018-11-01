@@ -35,8 +35,10 @@ export function Hero() {
         <section className="hero is-medium is-dark">
             <div className="hero-body">
                 <div className="container">
-                    <h1 className="title">Full-stack Web Developer</h1>
-                    <div className="subtitle">My name is Nicolas, and I'm an independent Web developer. With more than 10 years of experience, I am specialized in PHP, MySQL, JavaScript, HTML, CSS, and many other technologies. My mission is to help my customers with robust, high-quality software solutions in which your business can rely on.</div>
+                    <h1 className="title">Front-End Web Developer</h1>
+                    <div className="subtitle">My name is Nicolas, and I'm an independent Web developer.
+                    With more than 10 years of experience, my mission is to help my customers with <strong>robust,
+                    high-quality software</strong> solutions in which their business can rely on.</div>
                 </div>
             </div>
         </section>

@@ -9,6 +9,7 @@
   "author": "Nicolas Zerpa",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.2",
     "bulma": "^0.7.2",
     "dotenv": "^6.1.0",
     "node-sass": "^4.9.4",
@@ -22,6 +23,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.23.1",

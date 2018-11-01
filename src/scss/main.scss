@@ -51,20 +51,24 @@ div.bottom-notif.is-visible {
 span.bandera-argentina {
     border: 1px solid;
     display: inline-block;
-    height: 18px;
-    width: calc(18px * 8/5);
+    height: 15px;
+    width: 25px;
     vertical-align: middle;
     margin-right: 5px;
     background-color: #FFF;
     position: relative;
+    box-sizing: content-box;
+    padding: 0px;
     
     &:before,
     &:after {
         content: " ";
+        overflow: hidden;
         display: block;
+        white-space: nowrap;
         position: absolute;
-        width: 100%;
-        height: calc(18px / 3);
+        right: 0px;
+        height: 5px;
         left: 0px;
         top: 0px;
         background-color: rgb(116, 172, 223);
