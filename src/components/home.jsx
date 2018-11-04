@@ -5,36 +5,18 @@ import React from "react";
 export function MySkills(props) {
     return (
     <div>
-        <div className="columns">
+        <div className="columns has-text-centered">
             <div className="column">
-                <div className="notification is-light">
-                    <span className="icon is-large">
-                        <i className="fab fa-3x fa-js"></i>
-                    </span>
-                </div>
+                <i className="fab fa-8x fa-js"></i>
             </div>
             <div className="column">
-                <div className="notification is-light">
-                    <span className="icon is-large">
-                        <i className="fab fa-3x fa-react"></i>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div className="columns">
-            <div className="column">
-                <div className="notification is-light">
-                    <span className="icon is-large">
-                        <i className="fab fa-3x fa-html5"></i>
-                    </span>
-                </div>
+                <i className="fab fa-8x fa-react"></i>
             </div>
             <div className="column">
-                <div className="notification is-light">
-                    <span className="icon is-large">
-                        <i className="fab fa-3x fa-css3"></i>
-                    </span>
-                </div>
+                <i className="fab fa-8x fa-html5"></i>
+            </div>
+            <div className="column">
+                <i className="fab fa-8x fa-css3"></i>
             </div>
         </div>
     </div>);
