@@ -78,7 +78,26 @@ export class App extends React.Component {
                 
                 <section className="section">
                     <div className="container">
-                        <h1 className="title">My Skills</h1>
+                        <h1 className="title">About Me</h1>
+                        <div className="has-text-centered">My name is Nicolas Zerpa, and I'm an independent Web developer.
+                        With more than 10 years of experience, my mission is to help my customers with <strong>robust,
+                        high-quality software</strong> solutions in which their business can rely on.</div>
+                    </div>
+                </section>
+
+                <section className="section has-background-light">
+                    <div className="container">
+                        <h1 className="title">Portfolio</h1>
+                        <div className="has-text-centered">
+                            <p>Through all these years, I've worked in many projects, including high traffic web sites.</p>
+                            <p><button className="button">View Portfolio</button></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="section">
+                    <div className="container">
+                        <h1 className="title">Technical Skills</h1>
                         <MySkills/>
                     </div>
                 </section>

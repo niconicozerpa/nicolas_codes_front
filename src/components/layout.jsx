@@ -32,13 +32,10 @@ export class Header extends React.Component {
 
 export function Hero() {
     return (
-        <section className="hero is-medium is-dark">
+        <section className="hero is-large is-dark">
             <div className="hero-body">
                 <div className="container">
                     <h1 className="title">Front-End Web Developer</h1>
-                    <div className="subtitle">My name is Nicolas, and I'm an independent Web developer.
-                    With more than 10 years of experience, my mission is to help my customers with <strong>robust,
-                    high-quality software</strong> solutions in which their business can rely on.</div>
                 </div>
             </div>
         </section>

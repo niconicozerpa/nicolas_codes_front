@@ -5,10 +5,14 @@ $family-primary: NZMetropolis, sans-serif;
 
 @import "~bulma/bulma";
 
+p {
+    margin: 0.5em 0px;
+}
 .title {
     font-weight: bold;
     letter-spacing: -2px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .navbar-item .title {
@@ -19,12 +23,11 @@ $family-primary: NZMetropolis, sans-serif;
 
 .hero {
     .hero-body {
-        text-align: center;
-
         .title {
+            text-align: left;
             font-weight: 200;
             text-transform: none;
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             letter-spacing: 0.1rem;
             margin-bottom: 4rem;
         }
