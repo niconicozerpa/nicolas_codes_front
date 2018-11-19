@@ -258,6 +258,8 @@
             )
             .then((response) => response.json())
             .then(function(response) {
+                alert("Thank you for getting in touch with me. I'll answer as soon as possible.");
+                document.querySelector("#contact-form").reset();
                 ContactForm.enableButton();
             })
             .catch(function(e) {
