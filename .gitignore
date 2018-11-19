@@ -1,4 +1,0 @@
-node_modules/
-settings/*
-!settings/*.example
-package-lock.json

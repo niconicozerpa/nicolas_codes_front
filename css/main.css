@@ -1,0 +1,655 @@
+@font-face {
+    src: url("../fonts/Metropolis-Regular.woff2") format("woff2"),
+         url("../fonts/Metropolis-Regular.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 400;
+}
+@font-face {
+    src: url("../fonts/Metropolis-RegularItalic.woff2") format("woff2"),
+         url("../fonts/Metropolis-RegularItalic.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    src: url("../fonts/Metropolis-Bold.woff2") format("woff2"),
+         url("../fonts/Metropolis-Bold.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 600;
+}
+@font-face {
+    src: url("../fonts/Metropolis-Light.woff2") format("woff2"),
+         url("../fonts/Metropolis-Light.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 200;
+}
+@font-face {
+    src: url("../fonts/Metropolis-ExtraLight.woff2") format("woff2"),
+         url("../fonts/Metropolis-ExtraLight.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 100;
+}
+@font-face {
+    src: url("../fonts/Metropolis-ExtraBold.woff2") format("woff2"),
+         url("../fonts/Metropolis-ExtraBold.woff") format("woff");
+
+    font-family: NZMetro;
+    font-weight: 800;
+}
+
+:root {
+    --primary-color: hsl(230, 20%, 35%);
+    --primary-color-lighter: hsl(230, 35%, 40%);
+    --primary-color-text: #FFF;
+    --secondary-color: hsl(26, 100%, 55%);
+    --secondary-color-lighter: hsl(26, 100%, 65%);
+    --secondary-color-text: #FFF;
+    --tertiary-color: hsl(0, 0%, 95%);
+    --tertiary-color-text: hsl(0, 0%, 40%);
+}
+
+body {
+    font-family: NZMetro, sans-serif;
+    color: hsl(0, 0%, 40%);
+
+    font-size: 20px;
+    line-height: 150%;
+    background-color: #FFF;
+    margin: 0px;
+
+}
+
+.container {
+    max-width: 70rem;
+    margin: 0px auto;
+}
+.header {
+    padding: 18px 20px 18px 20px;
+    color: var(--primary-color-text);
+    background-color: var(--primary-color);
+    border-bottom: 4px solid var(--secondary-color);
+}
+.header__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 1100px;
+    margin: 0px auto;
+}
+
+.header__logoLink {
+    text-decoration: none;
+    color: var(--primary-color-text);
+}
+.header__logoName {
+    font-weight: 800;
+    display: block;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: -0.06em;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+.header__logoDescription {
+    font-style: italic;
+    letter-spacing: 0.07em;
+    line-height: 1.5em;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.header__menuContainer {
+    align-self: center;
+}
+
+
+.header__navbar {
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.header__navbarLink {
+    color: var(--primary-color-text);
+    text-decoration: none;
+    display: block;
+    margin: 0px 0px 0px 1.5rem;
+}
+.header__navbarLink:hover {
+    color: var(--secondary-color-lighter);
+}
+.header__mobileButton {
+    display: none;
+}
+.button {
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--secondary-color-text);
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2em;
+    padding: 1em 3em;
+    border-radius: 0.3rem;
+    font-family: NZMetro;
+    cursor: pointer;
+    position: relative;
+}
+
+.button--loading {
+    color: transparent;
+}
+@keyframes button--loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.button--loading:after,
+.button--loading:before {
+    position: absolute;
+    content: " ";
+    display: block;
+    left: calc(50% - 4px);
+    top: calc(50% - 4px);
+    width: 4px;
+    height: 4px;
+    border: 4px solid var(--secondary-color-text);
+    border-top-color: transparent;
+    border-radius: 8px;
+    animation-duration: 1s;
+    animation-name: button--loading;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+.button--loading:before {
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+    width: 16px;
+    height: 16px;
+    border: 4px solid var(--secondary-color-text);
+    border-top-color: transparent;
+    border-radius: 22px;
+    animation-direction: reverse;
+}
+.button:focus {
+    background-image: var(--secondary-color-lighter);
+    outline: none;
+    box-shadow: 0px 0px 0px 3px hsla(0, 0%, 0%, 0.15);
+}
+.button--onDarkBg:focus {
+    box-shadow: 0px 0px 0px 3px hsla(0, 0%, 100%, 0.25);
+}
+.button:active {
+    background-image: linear-gradient(0deg, hsla(0, 100%, 0%, 0.15), hsla(0, 100%, 0%, 0.15));
+    box-shadow: inset 0px 0px 5px hsl(0, 0%, 0%, 0.5);
+}
+.main {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+}
+.main__everythingElse {
+    overflow: auto;
+    flex-grow: 2;
+    position: relative;
+}
+.hero {
+    color: var(--primary-color-text);
+    background-color: var(--primary-color);
+    background-repeat: no-repeat;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2));
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero:after {
+    position: absolute;
+    content: " ";
+    left: 50%;
+    top: 50%;
+    width: 48rem;
+    height: 48rem;
+    border-radius: 24rem;
+    transform: translate(-50%, -50%);
+    background-color: hsla(0, 0%, 0%, 0.2);
+}
+.hero:before {
+    position: absolute;
+    content: " ";
+    left: 50%;
+    top: 50%;
+    width: 62rem;
+    height: 62rem;
+    border-radius: 34rem;
+    transform: translate(-50%, -50%);
+    border: 3px solid hsla(0, 0%, 100%, 0.2);
+}
+.hero__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    width: 90vw;
+    max-width: 55rem;
+    margin: 7rem auto;
+}
+.hero__title {
+    font-size: 3.5rem;
+    line-height: 1em;
+    letter-spacing: -0.03em;
+    margin: 0px 0px 4.6rem 0px;
+    position: relative;
+}
+.hero__title:after {
+    position: absolute;
+    width: 4rem;
+    height: 0.3rem;
+    background-color: var(--secondary-color);
+    content: " ";
+    overflow: hidden;
+    display: block;
+    left: calc(50% - 2rem);
+    bottom: -2.53rem;
+}
+.hero__title-highlighted {
+    color: var(--secondary-color);
+}
+.hero__subtitle {
+    font-size: 1.5rem;
+    line-height: 1.4em;
+    margin-bottom: 3rem;
+}
+.hero__subtitleBold {
+    color: var(--secondary-color-lighter);
+    white-space: nowrap;
+}
+.section {
+    padding: 8rem 2rem;
+}
+.section--center {
+    text-align: center;
+}
+.section--highlighted {
+    background-color: var(--tertiary-color);
+}
+.section__title {
+    color: var(--primary-color-lighter);
+    font-size: 3.5rem;
+    line-height: 4rem;
+    letter-spacing: -0.03em;
+    margin: 0px 0px 0.5em 0px;
+}
+.section__paragraph {
+    margin: 0px 0px 1rem 0px;
+}
+.section__paragraph__margin {
+    margin-top: -1rem;
+}
+.section__image {
+    width: 33rem;
+    margin-right: 1rem;
+    height: auto;
+}
+.columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: stretch;
+}
+.columns__column {
+    flex-basis: 50%;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.skills__skill {
+    width: calc(50% - 3rem);
+    margin-bottom: 3rem;
+}
+.skills__logo__icon {
+    color: var(--secondary-color);
+}
+.skills__title {
+    font-size: 1.2rem;
+}
+.skills__description {
+    font-size: 1rem;
+}
+.form {
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+}
+.form__field {
+    margin: 15px;
+    width: calc(50% - 30px);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.form__field--large {
+    width: calc(100% - 30px);
+}
+.form__fieldRecaptcha {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    flex-direction: column;
+}
+.form__label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.form__textField {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: block;
+    width: 100%;
+    font-family: NZMetro, sans-serif;
+    font-size: 1rem;
+    color: inherit;
+    padding: 5px 0px;
+}
+.form__textField:focus {
+    outline: none;
+    border-bottom-color: var(--primary-color);
+    box-shadow: 0px 1px 0px 0px var(--primary-color);
+}
+.form__textField--area {
+    height: 5em;
+    line-height: 1.3em;
+}
+.form__submit {
+    width: 100%;
+    text-align: center;
+}
+.footer {
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 50%);
+    padding: 4rem;
+    text-align: center;
+}
+.footer__logoName {
+    font-weight: 800;
+    display: block;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: -0.06em;
+    font-size: 4rem;
+    line-height: 4rem;
+}
+
+.footer__logoDescription {
+    font-style: italic;
+    letter-spacing: 0.07em;
+    line-height: 1.5em;
+    font-size: 2rem;
+    display: block;
+}
+.footer__navbar {
+    margin-top: 3rem;
+}
+.footer__navbar__link {
+    color: inherit;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0px 1em;
+    display: inline-block;
+}
+.footer__copyright {
+    font-size: 0.8rem;
+    margin-top: 4rem;
+}
+
+.argentineFlag {
+    border: 1px solid;
+    display: inline-block;
+    height: 15px;
+    width: 25px;
+    vertical-align: middle;
+    margin-right: 5px;
+    background-color: #FFF;
+    position: relative;
+    box-sizing: content-box;
+    padding: 0px;
+}
+.argentineFlag:before,
+.argentineFlag:after {
+    content: " ";
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    position: absolute;
+    right: 0px;
+    height: 5px;
+    left: 0px;
+    top: 0px;
+    background-color: rgb(116, 172, 223);
+}
+
+.argentineFlag:after {
+    top: auto;
+    bottom: 0px;
+}
+
+.argentineFlag__sunOfMay {
+    background-color: rgb(246, 180, 14);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 2.5px;
+    transform: translate(-50%, -50%);
+    width: 2.5px;
+    height: 2.5px;
+}
+
+.modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: hsla(0, 100%, 100%, 0.5);
+}
+.modal__closeButton {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    width: 5vw;
+    height: 5vh;
+}
+.modal__closeButton:after,
+.modal__closeButton:before {
+    content: " ";
+    position: absolute;
+    overflow: hidden;
+    background-color: hsl(0, 0%, 40%);
+    width: 4px;
+    border-radius: 4px;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal__closeButton:before {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+.modal__contents {
+    background-color: #FFF;
+    border: 1px solid hsl(0, 0%, 90%);
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    min-width: 30rem;
+    width: 70vw;
+    height: 80vh;
+    padding: 2rem;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.portfolioItem__title {
+    color: var(--primary-color);
+    text-align: center;
+    letter-spacing: -0.05em;
+    font-size: 2.5rem;
+}
+.portfolioItem__contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.portfolioItem__pictureContainer {
+    width: 19vw;
+    flex-shrink: 0;
+    padding-top: 1.5em;
+}
+.portfolioItem__picture {
+    width: 17vw;
+    height: 17vw;
+}
+
+@media (max-width: 770px) {
+    .hero:after {
+        width: 102vw;
+        height: 102vw;
+        top: 12.5rem;
+        border-radius: 51vw;
+    }
+    .hero::before {
+        top: 12.5rem;
+        width: 130vw;
+        height: 130vw;
+        border-radius: 65vw;
+    }
+    .hero__title {
+        font-size: 3rem;
+        line-height: 1em;
+    }
+    .header__mobileButton {
+        display: inline-block;
+        vertical-align: middle;
+        width: 28px;
+        height: 23px;
+        box-sizing: border-box;
+        border: 4px solid #FFF;
+        border-left: none;
+        border-right: none;
+        position: relative;
+    }
+    .header__mobileButton:after {
+        position: absolute; 
+        content: " ";
+        overflow: hidden;
+        width: 100%;
+        height: 1px;
+        border-top: 4px solid #FFF;
+        box-sizing: content-box;
+        top: calc(50% - 2px);
+        left: 0px;
+    }
+    .header__menuContainer {
+        position: relative;
+        z-index: 10;
+        align-self: flex-start;
+    }
+    .header__navbar {
+        display: none;
+        position: absolute;
+        top: 2.8rem;
+        right: 0px;
+        background-color: hsla(0, 0%, 0%, 0.6);
+        padding: 1rem 2rem 0px 2rem;
+    }
+    .header__navbar--showMobile {
+        display: block;
+    }
+    .header__navbarLink {
+        margin: 0px;
+        white-space: nowrap;
+        margin-bottom: 1rem;
+        text-shadow: 0px 0px 8px hsl(0, 0%, 0%);
+    }
+    .section {
+        text-align: center;
+    }
+    .section__title {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+    .section__image {
+        width: 100%;
+        margin-right: 0px;
+    }
+
+    .columns--nomobile {
+        flex-direction: column;
+    }
+
+    .skills {
+        flex-direction: column;
+    }
+    .skills__skill {
+        width: auto;
+    }
+
+    .form__field {
+        width: 100%;
+    }
+
+    .footer__logoName {
+        font-size: 2.5rem;
+        line-height: 2.3rem;
+        white-space: normal;
+        margin-bottom: 1rem;
+    }
+    .footer__logoDescription {
+        font-size: 1.7rem;
+        line-height: 1.8rem;
+    }
+
+    .footer__navbar__link {
+        display: block;
+    }
+}
+@media (max-width: 770px) and (orientation: landscape) {
+    body {
+        overflow: auto;
+    }
+}

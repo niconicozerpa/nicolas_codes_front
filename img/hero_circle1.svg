@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg9305"
+   version="1.1"
+   viewBox="0 0 21.459358 13.22917"
+   height="13.22917mm"
+   width="21.459358mm">
+  <defs
+     id="defs9299">
+    <linearGradient
+       gradientTransform="matrix(0.14148493,0,0,0.14148493,29.997132,257.62878)"
+       gradientUnits="userSpaceOnUse"
+       y2="-439.39108"
+       x2="46.634594"
+       y1="-532.02466"
+       x1="46.634594"
+       id="linearGradient7359"
+       xlink:href="#linearGradient7357" />
+    <linearGradient
+       id="linearGradient7357">
+      <stop
+         id="stop7353"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:0.15686275" />
+      <stop
+         id="stop7355"
+         offset="1"
+         style="stop-color:#000000;stop-opacity:0;" />
+    </linearGradient>
+  </defs>
+  <metadata
+     id="metadata9302">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-29.997133,-182.35531)"
+     id="layer1">
+    <path
+       id="rect889-0"
+       d="m 36.595193,182.35531 a 14.973823,14.973823 0 0 0 -6.59806,1.55251 v 4.35053 a 11.230367,11.230367 0 0 1 6.59806,-2.15958 11.230367,11.230367 0 0 1 11.086915,9.48571 h 3.774384 A 14.973823,14.973823 0 0 0 36.595193,182.35531 Z"
+       clip-path="none"
+       style="opacity:1;vector-effect:none;fill:url(#linearGradient7359);fill-opacity:1;stroke:none;stroke-width:0.04999464;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+  </g>
+</svg>
