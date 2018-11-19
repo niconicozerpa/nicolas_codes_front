@@ -47,6 +47,7 @@
     --primary-color-lighter: hsl(230, 35%, 40%);
     --primary-color-text: #FFF;
     --secondary-color: hsl(26, 100%, 55%);
+    --secondary-color-darker: hsl(26, 90%, 45%);
     --secondary-color-lighter: hsl(26, 100%, 65%);
     --secondary-color-text: #FFF;
     --tertiary-color: hsl(0, 0%, 95%);
@@ -516,8 +517,8 @@ body {
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
-    min-width: 30rem;
-    width: 70vw;
+    width: 90vw;
+    max-width: 60rem;
     height: 80vh;
     padding: 2rem;
     box-sizing: border-box;
@@ -542,7 +543,15 @@ body {
 }
 .portfolioItem__picture {
     width: 17vw;
-    height: 17vw;
+    height: auto;
+}
+.link {
+    color: var(--secondary-color-darker);
+    font-weight: bold;
+    text-decoration: none;
+}
+.link:hover {
+    color: var(--secondary-color);
 }
 
 @media (max-width: 770px) {
@@ -646,6 +655,16 @@ body {
 
     .footer__navbar__link {
         display: block;
+    }
+    .portfolioItem__contents {
+        flex-direction: column;
+    }
+    .portfolioItem__pictureContainer {
+        width: auto;
+        text-align: center;
+    }
+    .portfolioItem__picture {
+        width: 45vw;
     }
 }
 @media (max-width: 770px) and (orientation: landscape) {
