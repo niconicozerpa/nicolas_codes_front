@@ -23,7 +23,7 @@
             <header class="header">
                 <div class="header__container">
                     <div class="header__logo">
-                        <a href="#top" class="header__logoLink">
+                        <a href="#top" data-type="hashLink" class="header__logoLink">
                             <span class="header__logoName">Nicolas Zerpa</span>
                             <span class="header__logoDescription">Front-End Web Developer</span>
                         </a>
@@ -32,10 +32,10 @@
                     <div class="header__menuContainer">
                         <a href="" id="header-mobile-button" class="header__mobileButton"></a>
                         <nav class="header__navbar" id="header-navbar">
-                            <a class="header__navbarLink" href="#top">Home</a>
-                            <a class="header__navbarLink" href="#my-work">My Work</a>
-                            <a class="header__navbarLink" href="#skills">Skills</a>
-                            <a href="#contact-me" class="header__navbarLink">Contact Me</a>
+                            <a data-type="hashLink" class="header__navbarLink" href="#top">Home</a>
+                            <a data-type="hashLink" class="header__navbarLink" href="#my-work">My Work</a>
+                            <a data-type="hashLink" class="header__navbarLink" href="#skills">Skills</a>
+                            <a data-type="hashLink" href="#contact-me" class="header__navbarLink">Contact Me</a>
                         </nav>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <div>I'm ready to build your next product, <strong class="hero__subtitleBold">and do it right</strong>.</div>
                     </div>
                     <div>
-                        <a class="button button--onDarkBg" href="#contact-me">Contact Me</a>
+                        <a class="button button--onDarkBg" data-type="hashLink" href="#contact-me">Contact Me</a>
                     </div>
                 </div>
             </section>
@@ -152,10 +152,10 @@
                     <div class="footer__logoName">Nicolas Zerpa</div>
                     <div class="footer__logoDescription">Front-End Web Developer</div>
                     <nav class="footer__navbar">
-                        <a class="footer__navbar__link" href="#top">Home</a>
-                        <a class="footer__navbar__link" href="#my-work">My Work</a>
-                        <a class="footer__navbar__link" href="#skills">Skills</a>
-                        <a class="footer__navbar__link" href="#contact-me">Contact Me</a>
+                        <a class="footer__navbar__link" data-type="hashLink" href="#top">Home</a>
+                        <a class="footer__navbar__link" data-type="hashLink" href="#my-work">My Work</a>
+                        <a class="footer__navbar__link" data-type="hashLink" href="#skills">Skills</a>
+                        <a class="footer__navbar__link" data-type="hashLink" href="#contact-me">Contact Me</a>
                     </nav>
                     <div class="footer__copyright">
                         <div>© 2018 Raúl Nicolás López Zerpa</div>
@@ -265,6 +265,63 @@
                 ContactForm.enableButton();
             });
         });
+
+        function easeOut(current_time, initial_value, value_change, duration) {
+            current_time /= duration;
+            return -value_change * current_time * (current_time - 2) + initial_value;
+        };
+
+        function getScrollableElement()
+        {
+            const mainStyle = window.getComputedStyle(document.querySelector(".main"), "");
+            if(mainStyle.position == "fixed") {
+                return document.querySelector(".main__everythingElse");
+            } else {
+                return document.documentElement;
+            }
+        }
+
+        function doAnimatedScroll(from, to) {
+            const div = getScrollableElement();
+            
+            let step = 1;
+            const duration = 30;
+            let diff = to - from;
+            const animatedFunc = function() {
+                if (to != from) {
+                    let new_value;
+                    
+                    new_value = easeOut(step, 0, diff, duration);
+                    
+                    div.scrollBy(0, new_value);
+                    if (step < duration) {
+                        step++;
+                        requestAnimationFrame(animatedFunc);
+                    }
+
+                    diff = to - div.scrollTop;
+                }
+            };
+            requestAnimationFrame(animatedFunc);
+        }
+
+        function addHashLinkScroll(event) {
+            let elm_selector = event.currentTarget.getAttribute("href").split("#");
+            elm_selector = "#" + elm_selector[elm_selector.length - 1];
+            
+            const target = document.querySelector(elm_selector);
+            if (target) {
+                event.preventDefault();
+                document.querySelector(".header__navbar").classList.remove("header__navbar--showMobile");
+                doAnimatedScroll(getScrollableElement().scrollTop, target.offsetTop);
+            }
+        }
+        Array.prototype.forEach.call(
+            document.querySelectorAll("a[data-type=\"hashLink\"]"),
+            function(elm) {
+                elm.addEventListener("click", addHashLinkScroll);
+            }
+        );
     </script>
 </body>
 </html>

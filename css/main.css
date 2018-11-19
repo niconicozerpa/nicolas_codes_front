@@ -671,4 +671,12 @@ body {
     body {
         overflow: auto;
     }
+    .main {
+        position: static;
+        overflow: visible;
+    }
+    .main__everythingElse {
+        position: static;
+        overflow: visible;
+    }   
 }
