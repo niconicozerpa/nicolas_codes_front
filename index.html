@@ -178,6 +178,7 @@
         </div>
     </template>
     
+    <script src="config.js"></script>
     <script>
         document.querySelector("#header-mobile-button").addEventListener(
             "click",
@@ -247,7 +248,7 @@
             ContactForm.disableButton();
 
             fetch(
-                "http://localhost:8080",
+                CONTACT_FORM_ENDPOINT,
                 {
                     "method": "POST",
                     "headers": { "Content-Type": "application/json" },
