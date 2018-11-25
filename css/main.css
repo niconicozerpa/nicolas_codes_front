@@ -43,12 +43,13 @@
 }
 
 :root {
-    --primary-color: hsl(230, 20%, 35%);
-    --primary-color-lighter: hsl(230, 35%, 40%);
+    --primary-color: hsl(230, 50%, 30%);
+    --primary-color-darker: hsl(230, 45%, 20%);
+    --primary-color-lighter: hsl(230, 50%, 40%);
     --primary-color-text: #FFF;
-    --secondary-color: hsl(26, 100%, 55%);
-    --secondary-color-darker: hsl(26, 90%, 45%);
-    --secondary-color-lighter: hsl(26, 100%, 65%);
+    --secondary-color: hsl(10, 100%, 65%);
+    --secondary-color-darker: hsl(10, 90%, 45%);
+    --secondary-color-lighter: hsl(10, 100%, 75%);
     --secondary-color-text: #FFF;
     --tertiary-color: hsl(0, 0%, 95%);
     --tertiary-color-text: hsl(0, 0%, 40%);
@@ -71,9 +72,14 @@ body {
 }
 .header {
     padding: 18px 20px 18px 20px;
-    color: var(--primary-color-text);
-    background-color: var(--primary-color);
-    border-bottom: 4px solid var(--secondary-color);
+    color: #FFF;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 4;
+    text-shadow: 0px 0px 6px hsl(0, 0%, 0%, 0.7);
 }
 .header__container {
     display: flex;
@@ -202,38 +208,40 @@ body {
     box-shadow: inset 0px 0px 5px hsl(0, 0%, 0%, 0.5);
 }
 .main {
-    position: fixed;
     display: flex;
     flex-direction: column;
     top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
-    overflow: hidden;
 }
 .main__everythingElse {
-    overflow: auto;
     flex-grow: 2;
     position: relative;
 }
 .hero {
     color: var(--primary-color-text);
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-darker);
     background-repeat: no-repeat;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2));
+    background-image: linear-gradient(
+        135deg,
+        hsla(0, 0%, 100%, 0.15),
+        hsla(0, 0%, 0%, 0), 
+        hsla(0, 0%, 0%, 0.2));
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
 }
 .hero:after {
     position: absolute;
     content: " ";
     left: 50%;
     top: 50%;
-    width: 48rem;
-    height: 48rem;
-    border-radius: 24rem;
+    height: 140vh;
+    width: 140vh;
+    border-radius: 70vh;
     transform: translate(-50%, -50%);
     background-color: hsla(0, 0%, 0%, 0.2);
 }
@@ -242,9 +250,9 @@ body {
     content: " ";
     left: 50%;
     top: 50%;
-    width: 62rem;
-    height: 62rem;
-    border-radius: 34rem;
+    width: 170vh;
+    height: 170vh;
+    border-radius: 85vh;
     transform: translate(-50%, -50%);
     border: 3px solid hsla(0, 0%, 100%, 0.2);
 }
@@ -555,18 +563,14 @@ body {
 }
 
 @media (max-width: 770px) {
+
     .hero:after {
-        width: 102vw;
-        height: 102vw;
-        top: 12.5rem;
-        border-radius: 51vw;
+        display: none;
     }
-    .hero::before {
-        top: 12.5rem;
-        width: 130vw;
-        height: 130vw;
-        border-radius: 65vw;
+    .hero:before {
+        display: none;
     }
+
     .hero__title {
         font-size: 3rem;
         line-height: 1em;
@@ -668,15 +672,7 @@ body {
     }
 }
 @media (max-width: 770px) and (orientation: landscape) {
-    body {
-        overflow: auto;
+    .header {
+        position: absolute;
     }
-    .main {
-        position: static;
-        overflow: visible;
-    }
-    .main__everythingElse {
-        position: static;
-        overflow: visible;
-    }   
 }
