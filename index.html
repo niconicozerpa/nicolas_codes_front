@@ -295,9 +295,9 @@
             const div = getScrollableElement();
             
             let step = 1;
-            const duration = 30;
+            const duration = 100;
             let diff = to - from;
-            const animatedFunc = function() {
+            doAnimatedScroll.animatedFunc = function() {
                 if (to != from) {
                     let new_value;
                     
@@ -306,13 +306,13 @@
                     div.scrollBy(0, new_value);
                     if (step < duration) {
                         step++;
-                        requestAnimationFrame(animatedFunc);
+                        requestAnimationFrame(doAnimatedScroll.animatedFunc);
                     }
 
                     diff = to - div.scrollTop;
                 }
             };
-            requestAnimationFrame(animatedFunc);
+            requestAnimationFrame(doAnimatedScroll.animatedFunc);
         }
 
         function addHashLinkScroll(event) {
