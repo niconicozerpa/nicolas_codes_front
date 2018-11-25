@@ -200,8 +200,16 @@
                 modal_contents.innerHTML = "Loading...";
                 fetch("/portfolio.html")
                 .then((response) => response.text())
-                .then(function(response) {
-                    modal_contents.innerHTML = response;
+                .then(function(portfolio_data) {
+                    const parser = new DOMParser();
+                    const portfolio_doc = parser.parseFromString(portfolio_data, "text/html");
+                    const portfolio_contents = document.importNode(
+                        portfolio_doc.querySelector("#contents"),
+                        true
+                    );
+
+                    modal_contents.innerHTML = "";
+                    modal_contents.appendChild(portfolio_contents);
                 });
                 
                 const closeModal = (function() {
