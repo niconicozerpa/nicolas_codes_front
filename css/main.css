@@ -256,6 +256,18 @@ body {
     overflow: hidden;
     min-height: 100vh;
 }
+@keyframes hero_after {
+    from {
+        height: 140vh;
+        width: 140vh;
+        border-radius: 70vh;
+    }
+    to {
+        width: 137vh;
+        height: 137vh;
+        border-radius: 68.5vh;
+    }
+}
 .hero:after {
     position: absolute;
     content: " ";
@@ -265,7 +277,24 @@ body {
     width: 140vh;
     border-radius: 70vh;
     transform: translate(-50%, -50%);
-    background-color: hsla(0, 0%, 0%, 0.2);
+    background-image: radial-gradient(
+        hsla(0, 0%, 0%, 0),
+        hsla(0, 0%, 0%, 0.03),
+        hsla(0, 0%, 0%, 0.2)
+    );
+    animation: hero_after 3.5s ease-in-out 5 alternate;
+}
+@keyframes hero_before {
+    from {
+        width: 170vh;
+        height: 170vh;
+        border-radius: 85vh;
+    }
+    to {
+        width: 177vh;
+        height: 177vh;
+        border-radius: 88.5vh;
+    }
 }
 .hero:before {
     position: absolute;
@@ -277,6 +306,7 @@ body {
     border-radius: 85vh;
     transform: translate(-50%, -50%);
     border: 3px solid hsla(0, 0%, 100%, 0.2);
+    animation: hero_before 3.5s ease-in-out 5 alternate;
 }
 .hero__content {
     position: relative;
@@ -593,9 +623,11 @@ body {
 
     .hero:after {
         display: none;
+        animation: none;
     }
     .hero:before {
         display: none;
+        animation: none;
     }
 
     .hero__title {
@@ -612,6 +644,9 @@ body {
         border-left: none;
         border-right: none;
         position: relative;
+        overflow: hidden;
+        text-indent: 1000px;
+        white-space: nowrap;
     }
     .header__mobileButton:after {
         position: absolute; 
