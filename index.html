@@ -266,12 +266,21 @@
             )
             .then((response) => response.json())
             .then(function(response) {
-                alert("Thank you for getting in touch with me. I'll answer as soon as possible.");
-                document.querySelector("#contact-form").reset();
-                ContactForm.enableButton();
+                if (response.code == 200) {
+                    alert("Thank you for getting in touch with me. I'll answer as soon as possible.");
+                    document.querySelector("#contact-form").reset();
+                } else {
+                    if (response.message) {
+                        alert("There was a problem when sending the message: " + response.message);
+                    } else {
+                        throw "unknown_error";
+                    }
+                }
             })
             .catch(function(e) {
                 alert("There was a problem when sending the message. Please, try it again later or send an email to <hello@nicolas.codes>");
+            })
+            .finally(function() {
                 ContactForm.enableButton();
             });
         });
