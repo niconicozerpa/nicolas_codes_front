@@ -1,0 +1,11 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css");
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,700,800');
+*, .button {
+    font-family: Fira Sans;
+}
+.button {
+    font-weight: 600;
+}
+.title {
+    font-weight: 800;
+}

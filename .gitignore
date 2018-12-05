@@ -1,1 +1,4 @@
 public/config.js
+node_modules/*
+package-lock.json
+public/panelpanelpanel/dist/*
