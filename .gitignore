@@ -2,3 +2,4 @@ public/config.js
 node_modules/*
 package-lock.json
 public/panelpanelpanel/dist/*
+!public/panelpanelpanel/dist/empty
