@@ -70,10 +70,17 @@ const Saludo = ReactRedux.connect(
     mapDispatchToProps
 )(BaseSaludo);
 
+
 document.addEventListener("DOMContentLoaded", () => {
     ReactDOM.render(
         <ReactRedux.Provider store={store}>
             <div>
+                <section className="section">
+                    <div className="container has-text-centered">
+                        <button
+                            className="button is-link is-large">Iniciar sesión</button>
+                    </div>
+                </section>
                 <section className="section">
                     <div className="container">
                         <h1 className="title">Blog</h1>
