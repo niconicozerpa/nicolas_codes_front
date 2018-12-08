@@ -143,6 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             when an unknown printer took a galley of type and scrambled it to make a
                             type specimen book."
                             tags="Uno, dos, tres"
+                            display_date={new Date()}
+                            real_date={new Date()}
                             body={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel est at nulla consectetur hendrerit in ac orci. Phasellus dapibus neque malesuada neque pharetra iaculis. Suspendisse finibus dapibus magna. Nullam sit amet erat id augue lobortis bibendum. Sed sodales nulla imperdiet imperdiet sodales. Proin elementum sapien a tellus molestie, eget consectetur turpis placerat. Integer mollis dapibus pulvinar. Nullam aliquam augue nec dictum condimentum.
 
 Morbi bibendum tortor at venenatis gravida. Fusce sagittis quis mauris nec bibendum. Pellentesque enim velit, posuere a malesuada eleifend, pharetra nec sem. Curabitur malesuada vitae felis eu scelerisque. Etiam maximus lacus eget tellus pulvinar pretium. Praesent eu neque nec nulla mollis tristique. Nunc aliquet sapien et massa congue, in interdum felis dictum. Morbi a tortor convallis purus facilisis rutrum. Praesent et odio justo.

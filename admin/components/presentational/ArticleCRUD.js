@@ -1,5 +1,6 @@
 "use strict";
 import React from "react";
+import PropTypes from "prop-types";
 
 function Field(props) {
     
@@ -30,15 +31,40 @@ function Field(props) {
         
     </div>;
 }
+Field.propTypes = {
+    "narrow": PropTypes.bool,
+    "label": PropTypes.string
+};
+
+function splitDate(date_obj) {
+    let date_str = "";
+    let time_str = "";
+
+    if (date_obj) {
+        [date_str, time_str] = date_obj.toISOString().split("T");
+        time_str = time_str.replace(/Z$/, "");
+    }
+
+    return [date_str, time_str];
+}
 
 export class ArticleCRUD extends React.Component {
     constructor(props) {
         super(props);
+
+        const [display_date_str, display_time_str] = splitDate(props.display_date);
+        const [real_date_str, real_time_str] = splitDate(props.real_date);
+        
         this.state = {
             "title": props.title ? props.title : "",
             "lead": props.lead ? props.lead : "",
             "body": props.body ? props.body : "",
             "tags": props.tags ? props.tags : "",
+            "visible": props.visible ? props.visible : false,
+            "display_date": display_date_str,
+            "display_time": display_time_str,
+            "real_date": real_date_str,
+            "real_time": real_time_str
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -49,9 +75,6 @@ export class ArticleCRUD extends React.Component {
         object[event.target.name] = event.target.value;
         this.setState(object);
     }
-
-
-
 
     render() {
         return (
@@ -67,12 +90,22 @@ export class ArticleCRUD extends React.Component {
                             />
                     </Field>
                     <Field label="Fecha para mostrar" narrow>
-                        <input type="date" className="input"/>
-                        <input type="time" className="input"/>
+                        <input
+                            type="date"
+                            className="input"
+                            name="date"
+                            value={this.state.display_date}
+                            onChange={this.handleInput}/>
+                        <input
+                            type="time"
+                            className="input"
+                            name="time"
+                            value={this.state.display_time}
+                            onChange={this.handleInput}/>
                     </Field>
                     <Field label="Fecha real" narrow>
-                        <input type="date" readOnly className="input"/>
-                        <input type="time" className="input"/>
+                        <input type="date" readOnly className="input" defaultValue={this.state.real_date}/>
+                        <input type="time" readOnly className="input" defaultValue={this.state.real_time}/>
                     </Field>
                     <Field label="Copete">
                         <textarea
@@ -97,8 +130,25 @@ export class ArticleCRUD extends React.Component {
                             value={this.state.tags}
                             onChange={this.handleInput}/>
                     </Field>
+                    <Field label="Visible">
+                        <input
+                            name="visible"
+                            type="checkbox"
+                            value={this.state.visible}
+                            onChange={this.handleInput}
+                            />
+                    </Field>
                 </form>
             </div>
         );
     }
 }
+ArticleCRUD.propTypes = {
+    "title": PropTypes.string.isRequired,
+    "lead": PropTypes.string.isRequired,
+    "body": PropTypes.string.isRequired,
+    "tags": PropTypes.string.isRequired,
+    "visible": PropTypes.bool,
+    "display_date": PropTypes.instanceOf(Date),
+    "real_date": PropTypes.instanceOf(Date)
+};

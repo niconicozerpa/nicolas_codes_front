@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import PropTypes from "prop-types";
 
 export class List extends React.Component {
     
@@ -189,3 +190,14 @@ export class List extends React.Component {
         );
     }
 }
+List.propTypes = {
+    "data": PropTypes.array,
+    "onFilter": PropTypes.func,
+    "onNewItem": PropTypes.func,
+    "onLoadMore": PropTypes.func,
+    "cols": PropTypes.array,
+    "loading": PropTypes.bool,
+    "actions": PropTypes.array,
+    "hasMore": PropTypes.bool,
+    "hasNewItem": PropTypes.bool
+};
