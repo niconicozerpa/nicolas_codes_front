@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as Redux from "redux";
 import * as ReactRedux from "react-redux";
+import "bulma";
 
 import { List } from "./components/presentational/List.js";
 import { ArticleCRUD } from "./components/presentational/ArticleCRUD.js";
