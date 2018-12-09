@@ -2,85 +2,28 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import * as Redux from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import * as ReactRedux from "react-redux";
+import thunkMiddleware from "redux-thunk";
 import "bulma";
 
+import { LoginManager } from "./components/container/LoginManager.js";
 import { List } from "./components/presentational/List.js";
 import { ArticleCRUD } from "./components/presentational/ArticleCRUD.js";
 
-const initial_state = {
-    "number": 0
-};
+import { loginReducer } from "./state_management/login.js";
 
-const getNewState = (state) => Object.assign({}, state ? state : initial_state);
-
-function numberReducer(number, action) {
-    let output = number;
-    switch (action.type) {
-        case "add":
-            output++;
-            break;
-        case "sub":
-            output--;
-            break;
-        case "rnd":
-            output = parseInt(100000 * Math.random());
-            break;
-        case "zro":
-            output = 0;
-            break;
+const rootReducer = combineReducers(
+    {
+        "login": loginReducer
     }
-    return output;
-}
-
-function reducer(state, action) {
-    const new_state = getNewState(state);
-    new_state.number = numberReducer(new_state.number, action);
-    return new_state;
-}
-const store = Redux.createStore(reducer);
-
-
-function BaseSaludo(props) {
-    return <div>
-        <p>¡Hola mundo! La hora: {props.hora}</p>
-        <p>Además, un número al azar: {props.random} y un número del state: {props.number}</p>
-        <p>
-            <button className="button" type="button" onClick={props.addNumber}>Sumar</button> &nbsp; 
-            <button className="button" type="button" onClick={props.subNumber}>Restar</button> &nbsp; 
-            <button className="button" type="button" onClick={props.rndNumber}>Al azar</button> &nbsp; 
-            <button className="button" type="button" onClick={props.zroNumber}>Cero</button>
-        </p>
-    </div>;
-}
-
-
-const mapStateToProps = (state, own_props) => Object.assign({}, state);
-const mapDispatchToProps = (dispatch, own_props) => {
-    return {
-        "addNumber": () => dispatch({ "type": "add" }),
-        "subNumber": () => dispatch({ "type": "sub" }),
-        "rndNumber": () => dispatch({ "type": "rnd" }),
-        "zroNumber": () => dispatch({ "type": "zro" })
-    };
-};
-const Saludo = ReactRedux.connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BaseSaludo);
-
+);
+const store = createStore(rootReducer, {}, applyMiddleware(thunkMiddleware));
 
 document.addEventListener("DOMContentLoaded", () => {
     ReactDOM.render(
         <ReactRedux.Provider store={store}>
-            <div>
-                <section className="section">
-                    <div className="container has-text-centered">
-                        <button
-                            className="button is-link is-large">Iniciar sesión</button>
-                    </div>
-                </section>
+            <LoginManager>
                 <section className="section">
                     <div className="container">
                         <h1 className="title">Blog</h1>
@@ -160,15 +103,7 @@ Morbi bibendum tortor at venenatis gravida. Fusce sagittis quis mauris nec biben
 Maecenas gravida venenatis urna in pharetra. Aenean sagittis neque et purus molestie faucibus. Phasellus convallis urna eget mauris porttitor pulvinar. Praesent venenatis tincidunt arcu, quis aliquet arcu consectetur ac. Nullam consequat ullamcorper elit. Nullam ut ex ac ipsum sollicitudin iaculis ut sit amet quam. Mauris interdum viverra eros et mattis.`} />
                     </div>
                 </section>
-                <section className="section">
-                    <div className="container">
-                        <h1 className="title">Saludo</h1>
-                        <div>
-                            <Saludo random={Math.random()} hora={(new Date()).toISOString()}/>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            </LoginManager>
         </ReactRedux.Provider>,
         document.getElementById("root")
     );

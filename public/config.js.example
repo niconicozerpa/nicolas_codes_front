@@ -1,1 +1,2 @@
-const CONTACT_FORM_ENDPOINT = "...";
+const SERVICE_BASE_URL = "http://...";
+const CONTACT_FORM_ENDPOINT = "http://...";
