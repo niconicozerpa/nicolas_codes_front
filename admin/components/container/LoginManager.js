@@ -2,7 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { LoginForm } from "../presentational/LoginForm.js";
-import { actionCreatorStart, actionCreatorLogout } from "../../state_management/login.js";
+import { action_creators } from "../../state_management/Login.js";
 import { Header } from "../presentational/Header.js";
 
 class BaseLoginManager extends React.Component {
@@ -53,10 +53,10 @@ function mapStateToProps(state, own_props) {
 function mapDispatchToProps(dispatch, own_props) {
     return {
         "onStartLogin": (username, password) => {
-            dispatch(actionCreatorStart(username, password));
+            dispatch(action_creators.start(username, password));
         },
         "onLogout": () => {
-            dispatch(actionCreatorLogout());
+            dispatch(action_creators.logout());
         }
     };
 }
