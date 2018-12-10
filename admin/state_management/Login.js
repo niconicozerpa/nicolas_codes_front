@@ -6,34 +6,26 @@ const initial_state = {
 };
 
 export function loginReducer(state, action) {
+    const new_state = Object.assign({}, state ? state : initial_state);
     switch (action.type) {
         case "start-login":
-            return { "is_fetching" : true };
+            new_state.is_fetching = true;
         break;
         case "login-success":
-            return {
-                "is_fetching": false,
-                "active_token": action.token
-            };
+            new_state.is_fetching = false;
+            new_state.active_token = action.token;
 
         break;
         case "login-failed":
-            return {
-                "is_fetching": false,
-                "active_token": null
-            };
+            new_state.is_fetching = false;
+            new_state.active_token = null;
         break;
         case "logout":
-            return {
-                "active_token": null,
-                "is_fetching": false
-            };
+            new_state.active_token = null;
         break;
     }
 
-    if (!state) {
-        return Object.assign({}, initial_state);
-    }
+    return new_state;
 }
 
 export const action_creators = {
@@ -74,11 +66,10 @@ export const action_creators = {
                 } 
             )
             .then(response => response.json())
-            .then(login_results => {;
-
+            .then(login_results => {
                 if (login_results.token) {
                     dispatch(action_creators.success(login_results.token));
-                } else {s
+                } else {
                     dispatch(action_creators.failed());
                 }
             })

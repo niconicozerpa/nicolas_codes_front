@@ -15,7 +15,7 @@ import { ArticleCRUD } from "./components/presentational/ArticleCRUD.js";
 
 import { loginReducer } from "./state_management/Login.js";
 import { contactFormReducer } from "./state_management/ContactForm.js";
-
+import { ContactForm } from "./components/container/ContactForm.js";
 const rootReducer = combineReducers(
     {
         "login": loginReducer,
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <LoginManager>
                 <Router>
                     <div>
+                        <ContactForm/>
                         <section className="section">
                             <div className="container">
                                 <h1 className="title">Blog</h1>
