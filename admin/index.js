@@ -7,7 +7,7 @@ import * as ReactRedux from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 
-import "bulma";
+import "./styles/admin.scss";
 
 import { LoginManager } from "./components/container/LoginManager.js";
 import { List } from "./components/presentational/List.js";
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             {
                                                 "label": "Edit",
                                                 "onClick": function(row) { alert("Edit #" + row.id); },
-                                                "className": "is-info"
+                                                "className": "is-primary"
                                             },
                                             {
                                                 "label": "Unpublish",

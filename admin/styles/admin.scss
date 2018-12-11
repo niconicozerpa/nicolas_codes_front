@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+$basic_hue: 220;
+
+$family-sans-serif: Roboto, sans-serif;
+$body-background-color: hsl($basic_hue, 60%, 99%);
+$body-color: hsl($basic_hue, 65%, 25%);
+
+$light: hsl($basic_hue, 60%, 95%);
+$light-invert: hsl($basic_hue, 65%, 25%);
+$dark: hsl($basic_hue, 60%, 50%);
+$dark-invert: hsl($basic_hue, 60%, 95%);
+
+$primary: hsl($basic_hue, 60%, 50%);
+
+@import "../../node_modules/bulma/bulma.sass";
+
+.table {
+    background: transparent;
+    color: inherit;
+}
+.table thead th {
+    color: saturate(darken($primary, 5), 5);
+}
+.title {
+    font-weight: 400;
+    color: saturate(darken($primary, 5), 5);
+    font-size: 1.5rem;
+}
+.subtitle {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: desaturate(lighten($primary, 10), 10);
+}

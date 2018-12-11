@@ -18,10 +18,10 @@ export class Header extends React.Component {
 
     render() {
         return (
-            <nav className="navbar is-light" role="navigation" aria-label="main navigation">
+            <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <div className="navbar-item">
-                        <strong>Nicolás Zerpa</strong>
+                        <strong className="has-text-light">Nicolás Zerpa</strong>
                     </div>
                 </div>
                 <div className="navbar-menu">
@@ -33,7 +33,7 @@ export class Header extends React.Component {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <a className="button is-info" href="" onClick={this.onLogout}>Cerrar sesión</a>
+                            <a className="button is-light" href="" onClick={this.onLogout}>Cerrar sesión</a>
                         </div>
                     </div>
                 </div>

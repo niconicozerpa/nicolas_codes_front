@@ -145,7 +145,7 @@ export class List extends React.Component {
             new_item = (
                 <div className="level-right">
                     <div className="level-item">
-                        <a className="button is-link" href="" onClick={this.runNewItem}>Nuevo item</a>
+                        <a className="button is-primary" href="" onClick={this.runNewItem}>Nuevo item</a>
                     </div>
                 </div>
             );
@@ -166,7 +166,7 @@ export class List extends React.Component {
                                             onChange={this.updateFilter}/>
                                     </div>
                                     <div className="control">
-                                        <button className="button is-link">Filtrar</button>
+                                        <button className="button is-primary">Filtrar</button>
                                     </div>
                                 </div>
                             </form>
