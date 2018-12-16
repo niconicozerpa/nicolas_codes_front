@@ -77,67 +77,69 @@ export class List extends React.Component {
         let tbody;
         let load_more = "";
 
-        if (props.loading) {
-            tbody =
-            <tr>
-                <td
-                    className="itemList__cell itemList__cell--loading"
-                    colSpan={1 + cols.length}>Cargando...</td>
-            </tr>;
-        } else {
-            const rows = [];
-            
-            for (let i = 0; i < props.data.length; i++) {
-                const new_row = [];
-                const row_key = `row-${i}`;
-                const row_data = props.data[i];
+        const rows = [];
+        
+        for (let i = 0; i < props.data.length; i++) {
+            const new_row = [];
+            const row_key = `row-${i}`;
+            const row_data = props.data[i];
 
-                for(let i2 = 0; i2 < props.cols.length; i2++) {
-                    const col = props.cols[i2];
-                    const cell_key = `${row_key}-cell-${i2}`;
-                    const cell_value = (col.key && row_data[col.key]) ? row_data[col.key] : "";
+            for(let i2 = 0; i2 < props.cols.length; i2++) {
+                const col = props.cols[i2];
+                const cell_key = `${row_key}-cell-${i2}`;
+                const cell_value = (col.key && row_data[col.key]) ? row_data[col.key] : "";
 
-                    new_row.push(<td className="itemList__cell" key={cell_key}>{cell_value}</td>);
-                }
+                new_row.push(<td className="itemList__cell" key={cell_key}>{cell_value}</td>);
+            }
 
-                const actions = [];
+            const actions = [];
 
-                if (props.actions) {
-                    for (let i2 = 0; i2 < props.actions.length; i2++) {
-                        const action = props.actions[i2];
-                        const className = action.className ? action.className : "";
-                        const label = action.label ? action.label : "";
-                        const onClick = action.onClick ? action.onClick : function () {};
+            if (props.actions) {
+                for (let i2 = 0; i2 < props.actions.length; i2++) {
+                    const action = props.actions[i2];
+                    const className = action.className ? action.className : "";
+                    const label = action.label ? action.label : "";
+                    const onClick = action.onClick ? action.onClick : function () {};
 
-                        if (actions.length > 0) {
-                            actions.push(" ");
-                        }
-                        const runOnClick = function (event) {
-                            event.preventDefault();
-                            onClick(row_data);
-                        };
-                        actions.push(<a key={"k" + i2} href="" className={"button is-small " + className} onClick={runOnClick}>{label}</a>);
+                    if (actions.length > 0) {
+                        actions.push(" ");
                     }
+                    const runOnClick = function (event) {
+                        event.preventDefault();
+                        onClick(row_data);
+                    };
+                    actions.push(<a key={"k" + i2} href="" className={"button is-small " + className} onClick={runOnClick}>{label}</a>);
                 }
-
-                new_row.push(<td key={new_row + "-actions"}>
-                    {actions}
-                </td>);
-
-                rows.push(<tr key={row_key}>{new_row}</tr>);
-
-                this.latest_row_id = new_row.id;
             }
-            tbody = rows;
-            
-            if (props.hasMore) {
-                load_more = <div className="has-text-centered">
-                    <a
-                        href=""
-                        onClick={this.runLoadMore}
-                        className="button is-expanded">Cargar más</a>
-                </div>;
-            }
+
+            new_row.push(<td key={new_row + "-actions"}>
+                {actions}
+            </td>);
+
+            rows.push(<tr key={row_key}>{new_row}</tr>);
+
+            this.latest_row_id = new_row.id;
+        }
+
+        if (props.loading) {
+            rows.push(
+                <tr key="list-loading">
+                    <td
+                        className="itemList__cell itemList__cell--loading"
+                        colSpan={1 + cols.length}>Cargando...</td>
+                </tr>
+            );
+        }
+        
+        tbody = rows;
+        
+        if (props.hasMore) {
+            load_more = <div className="has-text-centered">
+                <a
+                    href=""
+                    onClick={this.runLoadMore}
+                    className="button is-expanded">Cargar más</a>
+            </div>;
         }
 
         let new_item = "";

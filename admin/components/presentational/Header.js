@@ -1,6 +1,7 @@
 "use strict";
 import * as React from "react";
 import PropTypes from "prop-types";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 export class Header extends React.Component {
     constructor(props) {
@@ -26,8 +27,8 @@ export class Header extends React.Component {
                 </div>
                 <div className="navbar-menu">
                     <div className="navbar-start">
-                        <a className="navbar-item">Blogs</a>
-                        <a className="navbar-item">Formulario de contacto</a>    
+                        <a href="/blog" className="navbar-item">Blogs</a>
+                        <a href="/contact-form" className="navbar-item">Formulario de contacto</a>
                     </div>
                 </div>
                 <div className="navbar-end">

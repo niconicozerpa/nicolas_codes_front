@@ -16,11 +16,20 @@ $primary: hsl($basic_hue, 60%, 50%);
 @import "../../node_modules/bulma/bulma.sass";
 
 .table {
-    background: transparent;
-    color: inherit;
+    border: 1px solid lighten($dark, 30%);
+    border-collapse: unset;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .table thead th {
     color: saturate(darken($primary, 5), 5);
+    border-bottom: 1px solid lighten($dark, 35%);
+    background-color: lighten($dark, 48%);
+    padding: 1rem 1.5rem;
+}
+.table tbody td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid lighten($dark, 35%);
 }
 .title {
     font-weight: 400;
