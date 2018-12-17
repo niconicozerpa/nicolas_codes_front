@@ -16,33 +16,33 @@ export function contactFormReducer(state, action) {
     let new_state = Object.assign({}, state);
     
     switch (action.type) {
-        case "reset":
+        case "form-reset":
             new_state = Object.assign({}, initial_state);
         break;
-        case "start-fetching":
+        case "form-start-fetching":
             new_state.is_fetching = true;
             if (action.filter) {
                 new_state.filter = action.filter;
             }
         break;
 
-        case "end-fetching-specific-form":
+        case "form-end-fetching-specific-form":
             new_state.is_fetching = false;
             new_state.specific_form = action.specific_form
         break;
 
-        case "end-fetching":
+        case "form-end-fetching":
             new_state.is_fetching = false;
             new_state.form_list = state.form_list.concat(action.items);
             new_state.form_list_more = action.more_items_available;
             new_state.offset = action.offset + action.items.length;
         break;
 
-        case "fail-fetching":
+        case "form-fail-fetching":
             new_state.is_fetching = false;
         break;
 
-        case "unload-specific-form":
+        case "form-unload-specific-form":
             new_state.specific_form = null;
         break;
     }
@@ -52,14 +52,14 @@ export function contactFormReducer(state, action) {
 export const action_creators = {
     "startNewSearch": function(filter, token) {
         return (dispatch) => {
-            dispatch({ "type": "reset" });
+            dispatch({ "type": "form-reset" });
             return this.fetch(filter, 0, token)(dispatch);
         }
     },
     "fetch": function (filter, offset, token) {
         return function (dispatch) {
             dispatch({
-                "type": "start-fetching",
+                "type": "form-start-fetching",
                 "filter": filter
             });
             
@@ -80,24 +80,24 @@ export const action_creators = {
             .then(function (response) {
                 if (response.items) {
                     dispatch({
-                        "type": "end-fetching",
+                        "type": "form-end-fetching",
                         "items": response.items,
                         "offset": offset,
                         "more_items_available":  response.more_items_available
                     });
                 } else {
-                    dispatch({ "type": "fail-fetching" });
+                    dispatch({ "type": "form-fail-fetching" });
                 }
             })
             .catch(function() {
-                dispatch({ "type": "fail-fetching" });
+                dispatch({ "type": "form-fail-fetching" });
             });
         }
     },
 
     "loadSpecificForm": function(id, token) {
         return function(dispatch) {
-            dispatch({ "type": "start-fetching" });
+            dispatch({ "type": "form-start-fetching" });
 
             fetch(
                 `${SERVICE_BASE_URL}/contact-form-entries?id=${id}`,
@@ -112,20 +112,20 @@ export const action_creators = {
             .then(function (response) {
                 if (response.id) {
                     dispatch({
-                        "type": "end-fetching-specific-form",
+                        "type": "form-end-fetching-specific-form",
                         "specific_form": response
                     });
                 } else {
-                    dispatch({ "type": "fail-fetching" });
+                    dispatch({ "type": "form-fail-fetching" });
                 }
             })
             .catch(function() {
-                dispatch({ "type": "fail-fetching" });
+                dispatch({ "type": "form-fail-fetching" });
             });
         }
     },
 
     "unloadSpecificForm": function() {
-        return { "type": "unload-specific-form" };
+        return { "type": "form-unload-specific-form" };
     }
 };

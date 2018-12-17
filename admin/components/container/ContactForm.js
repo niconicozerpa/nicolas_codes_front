@@ -5,6 +5,7 @@ import { action_creators } from "../../state_management/ContactForm.js";
 import { Section } from "../presentational/Section.js";
 import { List } from "../presentational/List.js";
 import { SpecificForm } from "../presentational/SpecificForm.js";
+import { Loading } from "../presentational/Loading.js"
 
 
 class BaseContactForm extends React.Component {
@@ -42,9 +43,10 @@ class BaseContactForm extends React.Component {
 
         return (
             <div>
+                <Loading loading={this.props.is_fetching}/>
                 <SpecificForm
                     form={this.props.specific_form}
-                    onClose={this.props.unloadSpecificForm} />
+                    onClose={this.props.unloadSpecificForm}/>
                 <Section title="Formulario de contacto">
                     <List cols={[
                         { "key": "id", "label": "ID" },

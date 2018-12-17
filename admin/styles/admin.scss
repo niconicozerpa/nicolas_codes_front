@@ -16,20 +16,20 @@ $primary: hsl($basic_hue, 60%, 50%);
 @import "../../node_modules/bulma/bulma.sass";
 
 .table {
-    border: 1px solid lighten($dark, 30%);
+    border: 1px solid lighten($dark, 44%);
     border-collapse: unset;
     border-radius: 10px;
     overflow: hidden;
 }
 .table thead th {
     color: saturate(darken($primary, 5), 5);
-    border-bottom: 1px solid lighten($dark, 35%);
+    border-bottom: 1px solid lighten($dark, 44%);
     background-color: lighten($dark, 48%);
     padding: 1rem 1.5rem;
 }
 .table tbody td {
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid lighten($dark, 35%);
+    border-bottom: 1px solid lighten($dark, 44%);
 }
 .title {
     font-weight: 400;
@@ -40,4 +40,72 @@ $primary: hsl($basic_hue, 60%, 50%);
     font-weight: 300;
     font-size: 1.2rem;
     color: desaturate(lighten($primary, 10), 10);
+}
+.loading {
+    position: fixed;
+    z-index: 100;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: hsla(0, 0%, 0%, 0.5);
+
+    @keyframes loading_after {
+        from {
+            opacity: 0;
+        }
+        40% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+            width: 2rem;
+            height: 2rem;
+            border-width: 1rem;
+        }
+        90% {
+            opacity: 0;
+        }
+        to {
+            opacity: 0;
+            background-color: hsla(0, 100%, 100%, 0);
+            width: 4rem;
+            height: 4rem;
+            border-width: 0rem;
+        }
+    }
+
+    &:after {
+        display: block;
+        box-sizing: border-box;
+        background-color: #FFF;
+        content: " ";
+        border: 0px solid #FFF;
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        border-radius: 5rem;
+        left: 50%;
+        top: 50%;
+        overflow: hidden;
+        transform: translate(-50%, -50%);
+        margin-top: -1.2rem;
+        animation: loading_after 1.5s linear 0s infinite;
+    }
+    &:before {
+        content: "Cargando...";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 1.2rem;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        font-weight: bold;
+        color: #FFF;
+        text-shadow: 1px 1px 2px hsla(0, 0%, 0%, 0.5);
+    }
+}
+.modal-background {
+    background-color: hsla(0, 0%, 0%, 0.5);
 }
