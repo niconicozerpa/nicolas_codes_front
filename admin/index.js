@@ -11,13 +11,18 @@ import "./styles/admin.scss";
 import { LoginManager } from "./components/container/LoginManager.js";
 import { ArticleCRUD } from "./components/presentational/ArticleCRUD.js";
 
-import { loginReducer } from "./state_management/Login.js";
-import { contactFormReducer } from "./state_management/ContactForm.js";
+import { loginReducer } from "./state_mgmt/Login.js";
+import { contactFormReducer } from "./state_mgmt/ContactForm.js";
+import { asyncReducer } from "./state_mgmt/Async.js";
 import { RouteManager } from "./components/container/RouteManager.js";
+
+import { Loading } from "./components/presentational/Loading.js";
+
 const rootReducer = combineReducers(
     {
         "login": loginReducer,
-        "contact_form": contactFormReducer
+        "contact_form": contactFormReducer,
+        "async_fetching": asyncReducer
     }
 );
 const store = createStore(rootReducer, {}, applyMiddleware(thunkMiddleware));
@@ -28,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         <ReactRedux.Provider store={store}>
             <div>
+                <Loading/>
                 <LoginManager>
                     <RouteManager/>
                 </LoginManager>

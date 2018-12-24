@@ -2,7 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { LoginForm } from "../presentational/LoginForm.js";
-import { action_creators } from "../../state_management/Login.js";
+import { action_creators } from "../../state_mgmt/Login.js";
 import { Header } from "../presentational/Header.js";
 
 class BaseLoginManager extends React.Component {

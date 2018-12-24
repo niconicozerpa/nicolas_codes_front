@@ -1,12 +1,10 @@
 "use strict";
 import React from "react";
 import { connect } from "react-redux";
-import { action_creators } from "../../state_management/ContactForm.js";
+import { action_creators } from "../../state_mgmt/ContactForm.js";
 import { Section } from "../presentational/Section.js";
 import { List } from "../presentational/List.js";
 import { SpecificForm } from "../presentational/SpecificForm.js";
-import { Loading } from "../presentational/Loading.js"
-
 
 class BaseContactForm extends React.Component {
     constructor(props) {
@@ -43,7 +41,6 @@ class BaseContactForm extends React.Component {
 
         return (
             <div>
-                <Loading loading={this.props.is_fetching}/>
                 <SpecificForm
                     form={this.props.specific_form}
                     onClose={this.props.unloadSpecificForm}/>
@@ -77,7 +74,6 @@ function mapStateToProps(state, own_props) {
         "token": state.login.active_token,
         "items": state.contact_form.form_list,
         "has_more_items": state.contact_form.form_list_more,
-        "is_fetching": state.contact_form.is_fetching,
         "offset": state.contact_form.offset,
         "filter": state.contact_form.filter,
         "specific_form": state.contact_form.specific_form
