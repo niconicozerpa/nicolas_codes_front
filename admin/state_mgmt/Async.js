@@ -2,14 +2,17 @@
 
 const initial_state = false;
 
+const ACTION_START = "fetch-start";
+const ACTION_END = "fetch-end";
+
 export function asyncReducer(state, action) {
     let output = state ? true : false;
 
     switch (action.type) {
-        case "fetch-start":
+        case ACTION_START:
             output = true;
             break;
-        case "fetch-end":
+        case ACTION_END:
             output = false;
             break;
     }
@@ -19,7 +22,7 @@ export function asyncReducer(state, action) {
 
 export function createAsyncAction(async_function, action_to_dispatch, handle_error) {
     return function (dispatch) {
-        dispatch({ "type": "fetch-start" });
+        dispatch({ "type": ACTION_START });
         return async_function(dispatch)
         .then(function() {
             action_to_dispatch(dispatch, ...arguments);
@@ -30,7 +33,7 @@ export function createAsyncAction(async_function, action_to_dispatch, handle_err
             }
         })
         .finally(function() {
-            dispatch({ "type": "fetch-end" });
+            dispatch({ "type": ACTION_END });
         })
     };
 }

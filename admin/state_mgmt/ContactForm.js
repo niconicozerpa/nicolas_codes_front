@@ -10,6 +10,12 @@ const initial_state = {
     "filter": ""
 };
 
+const ACTION_RESET = "form-reset";
+const ACTION_SET_FILTER = "form-set-filter";
+const ACTION_SET_SPECIFIC_FORM = "form-set-specific-form";
+const ACTION_UNSET_SPECIFIC_FORM = "form-unset-specific-form";
+const ACTION_SET_SEARCH_RESULTS = "form-set-search-results";
+
 export function contactFormReducer(state, action) {
     if (!state) {
         state = Object.assign({}, initial_state);
@@ -17,25 +23,24 @@ export function contactFormReducer(state, action) {
     let new_state = Object.assign({}, state);
     
     switch (action.type) {
-        case "form-reset":
+        case ACTION_RESET:
             new_state = Object.assign({}, initial_state);
         break;
-        case "form-set-filter":
+        case ACTION_SET_FILTER:
             new_state.filter = action.filter;
         break;
 
-        case "form-end-fetching-specific-form":
-            new_state.is_fetching = false;
-            new_state.specific_form = action.specific_form
+        case ACTION_SET_SPECIFIC_FORM:
+            new_state.specific_form = action.specific_form;
         break;
 
-        case "form-set-search-results":
+        case ACTION_SET_SEARCH_RESULTS:
             new_state.form_list = state.form_list.concat(action.items);
             new_state.form_list_more = action.more_items_available;
             new_state.offset = action.offset + action.items.length;
         break;
 
-        case "form-unload-specific-form":
+        case ACTION_UNSET_SPECIFIC_FORM:
             new_state.specific_form = null;
         break;
     }
@@ -45,7 +50,7 @@ export function contactFormReducer(state, action) {
 export const action_creators = {
     "startNewSearch": function(filter, token) {
         return (dispatch) => {
-            dispatch({ "type": "form-reset" });
+            dispatch({ "type": ACTION_RESET });
             return this.fetch(filter, 0, token)(dispatch);
         }
     },
@@ -54,7 +59,7 @@ export const action_creators = {
         return createAsyncAction(
             function(dispatch) {
                 dispatch({
-                    "type": "form-set-filter",
+                    "type": ACTION_SET_FILTER,
                     "filter": filter
                 });
                 
@@ -75,7 +80,7 @@ export const action_creators = {
             },
             function(dispatch, response) {
                 dispatch({
-                    "type": "form-set-search-results",
+                    "type": ACTION_SET_SEARCH_RESULTS,
                     "items": response.items,
                     "offset": offset,
                     "more_items_available":  response.more_items_available
@@ -108,7 +113,7 @@ export const action_creators = {
             },
             function(dispatch, response) {
                 dispatch({
-                    "type": "form-end-fetching-specific-form",
+                    "type": ACTION_SET_SPECIFIC_FORM,
                     "specific_form": response
                 });
             }
@@ -116,6 +121,6 @@ export const action_creators = {
     },
 
     "unloadSpecificForm": function() {
-        return { "type": "form-unload-specific-form" };
+        return { "type": ACTION_UNSET_SPECIFIC_FORM };
     }
 };

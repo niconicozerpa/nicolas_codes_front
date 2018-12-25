@@ -1,5 +1,10 @@
 "use strict";
 
+const ACTION_START = "login-start";
+const ACTION_SUCCEEDED = "login-succeded";
+const ACTION_FAILED = "login-failed";
+const ACTION_LOGOUT = "login-logout";
+
 const initial_state = {
     "active_token": sessionStorage.getItem("panelpanelpanel-token"),
     "is_fetching": false
@@ -8,19 +13,19 @@ const initial_state = {
 export function loginReducer(state, action) {
     const new_state = Object.assign({}, state ? state : initial_state);
     switch (action.type) {
-        case "start-login":
+        case ACTION_START:
             new_state.is_fetching = true;
         break;
-        case "login-success":
+        case ACTION_SUCCEEDED:
             new_state.is_fetching = false;
             new_state.active_token = action.token;
 
         break;
-        case "login-failed":
+        case ACTION_FAILED:
             new_state.is_fetching = false;
             new_state.active_token = null;
         break;
-        case "logout":
+        case ACTION_LOGOUT:
             new_state.active_token = null;
         break;
     }
@@ -32,25 +37,25 @@ export const action_creators = {
     "success": function(token) {
         sessionStorage.setItem("panelpanelpanel-token", token);
         return {
-            "type": "login-success",
+            "type": ACTION_SUCCEEDED,
             "token": token
         };
     },
     "failed": function() {
         sessionStorage.removeItem("panelpanelpanel-token");
         return {
-            "type": "login-failed"
+            "type": ACTION_FAILED
         };
     },
     "logout": function() {
         sessionStorage.removeItem("panelpanelpanel-token");
         return {
-            "type": "logout"
+            "type": ACTION_LOGOUT
         }
     },
     "start": function(username, password) {
         return (dispatch) => {
-            dispatch({ "type": "start-login" });
+            dispatch({ "type": ACTION_START });
             
             fetch(
                 `${SERVICE_BASE_URL}/login`,
@@ -74,7 +79,7 @@ export const action_creators = {
                 }
             })
             .catch(() => {
-                dispatch({ "type": "login-failed" });
+                dispatch({ "type": ACTION_FAILED });
             })
         };
     }
