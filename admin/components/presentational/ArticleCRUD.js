@@ -68,18 +68,51 @@ export class ArticleCRUD extends React.Component {
         };
 
         this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInput(event) {
         const object = {};
-        object[event.target.name] = event.target.value;
+        object[event.target.name] = event.target.type == "checkbox" ? event.target.checked : event.target.value;
         this.setState(object);
+    }
+
+    convertDateToISO8601(date_str, time_str) {
+        const date = new Date();
+
+        const [unused, year, month, day] = String(date_str).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+        const [unused2, hours, minutes, seconds] = String(time_str).match(/(\d{1,2}):(\d{1,2})/);
+
+        date.setUTCFullYear(year);
+        date.setUTCMonth(parseInt(month) - 1);
+        date.setUTCDate(parseInt(day));
+        date.setUTCHours(parseInt(hours));
+        date.setUTCMinutes(parseInt(minutes));
+        date.setUTCSeconds(0);
+        date.setUTCMilliseconds(0);
+
+        return date.toISOString();
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        const article = Object.assign({}, this.state);
+
+        if (article.display_date && article.display_time) {
+            article.display_date = this.convertDateToISO8601(article.display_date, article.display_time);
+            delete article.display_time;
+        };
+        
+        if (this.props.onSubmit) {
+            this.props.onSubmit(article);
+        }
     }
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <Field label="Título">
                         <input
                             type="text"
@@ -93,13 +126,13 @@ export class ArticleCRUD extends React.Component {
                         <input
                             type="date"
                             className="input"
-                            name="date"
+                            name="display_date"
                             value={this.state.display_date}
                             onChange={this.handleInput}/>
                         <input
                             type="time"
                             className="input"
-                            name="time"
+                            name="display_time"
                             value={this.state.display_time}
                             onChange={this.handleInput}/>
                     </Field>
@@ -134,10 +167,16 @@ export class ArticleCRUD extends React.Component {
                         <input
                             name="visible"
                             type="checkbox"
-                            value={this.state.visible}
+                            value={1}
+                            checked={this.state.visible}
                             onChange={this.handleInput}
                             />
                     </Field>
+                    <div className="field">
+                        <div className="control">
+                            <button className="button is-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         );

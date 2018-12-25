@@ -10,7 +10,7 @@ const initial_state = {
     "filter": ""
 };
 
-const ACTION_RESET = "form-reset";
+const ACTION_RESET_FILTER = "form-reset-filter";
 const ACTION_SET_FILTER = "form-set-filter";
 const ACTION_SET_SPECIFIC_FORM = "form-set-specific-form";
 const ACTION_UNSET_SPECIFIC_FORM = "form-unset-specific-form";
@@ -23,7 +23,7 @@ export function contactFormReducer(state, action) {
     let new_state = Object.assign({}, state);
     
     switch (action.type) {
-        case ACTION_RESET:
+        case ACTION_RESET_FILTER:
             new_state = Object.assign({}, initial_state);
         break;
         case ACTION_SET_FILTER:
@@ -50,7 +50,7 @@ export function contactFormReducer(state, action) {
 export const action_creators = {
     "startNewSearch": function(filter, token) {
         return (dispatch) => {
-            dispatch({ "type": ACTION_RESET });
+            dispatch({ "type": ACTION_RESET_FILTER });
             return this.fetch(filter, 0, token)(dispatch);
         }
     },

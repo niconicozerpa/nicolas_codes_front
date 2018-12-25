@@ -9,3 +9,6 @@
 .title {
     font-weight: 800;
 }
+.modal .modal-content.is-wide {
+    width: 80vw;
+}
