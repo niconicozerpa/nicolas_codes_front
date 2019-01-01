@@ -15,9 +15,17 @@ module.exports = {
             }
         ]
     },
-    "entry": "./admin/index.js",
+    "entry": {
+        "panelpanelpanel": "./admin/index.js",
+        "frontend": "./front.js"
+    },
     "output": {
-        "path": path.resolve(__dirname, "public", "panelpanelpanel", "dist"),
-        "filename": "app.js"
+        "path": path.resolve(__dirname, "public", "dist"),
+        "filename": "[name].app.js"
+    },
+    "optimization": {
+        "splitChunks": {
+            "chunks": "all"
+        }
     }
 };

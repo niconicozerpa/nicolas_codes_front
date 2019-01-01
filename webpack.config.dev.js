@@ -10,7 +10,7 @@ module.exports = merge(
         "mode": "development",
         "devtool": "inline-source-map",
         "devServer": {
-            "publicPath": "/panelpanelpanel/dist/",
+            "publicPath": "/dist/",
             "contentBase": path.join(__dirname, "public"),
             "port": 8000
         },
