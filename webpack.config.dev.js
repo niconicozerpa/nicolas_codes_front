@@ -12,7 +12,8 @@ module.exports = merge(
         "devServer": {
             "publicPath": "/dist/",
             "contentBase": path.join(__dirname, "public"),
-            "port": 8000
+            "port": 8000,
+            "host": "0.0.0.0"
         },
         "plugins": [
             new webpack.DefinePlugin({

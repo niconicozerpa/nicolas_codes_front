@@ -554,10 +554,11 @@ body {
 }
 .modal__closeButton {
     position: absolute;
-    top: 2vh;
-    right: 2vw;
-    width: 5vw;
-    height: 5vh;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 5;
 }
 .modal__closeButton:after,
 .modal__closeButton:before {
@@ -588,6 +589,7 @@ body {
     padding: 2rem;
     box-sizing: border-box;
     overflow: auto;
+    z-index: 4;
 }
 
 .portfolioItem__title {
