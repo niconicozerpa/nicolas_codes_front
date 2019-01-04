@@ -2,6 +2,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.2.0",
     "bulma": "^0.7.2",
+    "lodash.clonedeep": "^4.5.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

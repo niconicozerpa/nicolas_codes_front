@@ -1,32 +1,26 @@
 import React from "react";
+import { SiteContext } from "../ContextManager.js";
 
 export default class HeaderMenu extends React.Component {
+    
     constructor(props) {
         super(props);
 
-        this.state = {
-            "showMobile": false
-        };
         this.handleClickMobile = this.handleClickMobile.bind(this);
         this.handleClickLink = this.handleClickLink.bind(this);
         
     }
     handleClickMobile(e) {
         e.preventDefault();
-
-        this.setState({
-            "showMobile": !this.state.showMobile
-        });
+        this.context.header_updateMobile(!this.context.header_menu.show_mobile);
     };
     handleClickLink(e) {
-        this.setState({
-            "showMobile": false
-        });
+        this.context.header_updateMobile(false);
     }
 
     render() {
         const navbar_classes = ["header__navbar"];
-        if (this.state.showMobile) {
+        if (this.context.header_menu.show_mobile) {
             navbar_classes.push("header__navbar--showMobile");
         }
 
@@ -43,3 +37,4 @@ export default class HeaderMenu extends React.Component {
         );
     }
 };
+HeaderMenu.contextType = SiteContext;

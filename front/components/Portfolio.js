@@ -1,13 +1,10 @@
 "use strict";
 import React from "react";
+import { SiteContext } from "../ContextManager.js";
 
 export default class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            "contents": null,
-            "loading": false
-        };
 
         this.loadPortfolio = this.loadPortfolio.bind(this);
         this.unloadPortfolio = this.unloadPortfolio.bind(this);
@@ -15,40 +12,21 @@ export default class Portfolio extends React.Component {
 
     loadPortfolio(e) {
         e.preventDefault();
-
-        this.setState({ "loading": true });
-
-        fetch("/portfolio.html")
-        .then((response) => response.text())
-        .then((portfolio_data) => {
-            const parser = new DOMParser();
-            const portfolio_doc = parser.parseFromString(portfolio_data, "text/html");
-            const portfolio_contents = document.importNode(
-                portfolio_doc.querySelector("#contents"),
-                true
-            );
-
-            this.setState({
-                "contents": portfolio_contents.innerHTML,
-                "loading": false
-            });
-        });
+        this.context.portfolio_load();
     }
 
     unloadPortfolio(e) {
         e.preventDefault();
-        this.setState({
-            "contents": null,
-            "loading": false
-        });
+        this.context.portfolio_unload();
     }
 
     render() {
-        const modal = this.state.contents || this.state.loading ? (
+        const data = this.context.portfolio;
+        const modal = data.contents || data.loading ? (
             <div className="modal">
                 <a href="" onClick={this.unloadPortfolio} className="modal__closeButton"></a>
                 <div className="modal__contents" data-type="modal-portfolio-contents">
-                    { this.state.loading ? "Loading..." : <div dangerouslySetInnerHTML={{ "__html": this.state.contents } }/> }
+                    { data.loading ? "Loading..." : <div dangerouslySetInnerHTML={{ "__html": data.contents } }/> }
                 </div>
             </div>
         ) : null;
@@ -75,3 +53,4 @@ export default class Portfolio extends React.Component {
         );
     }
 };
+Portfolio.contextType = SiteContext;
