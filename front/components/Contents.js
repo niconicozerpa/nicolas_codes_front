@@ -1,11 +1,26 @@
 "use strict";
 import React from "react";
+
+import { Route, Link } from "react-router-dom";
+
 import HeaderMenu from "./HeaderMenu.js";
-import Portfolio from "./Portfolio.js";
-import ContactForm from "./ContactForm.js";
+import HomePage from "./HomePage.js";
+
+function Blog() {
+    return <div><h1>Blog</h1></div>;
+}
+
+function CurrentRouter(props) {
+    if (props.mode == "server") {
+        return (<StaticRouter context={CurrentRouter.context}>{props.children}</StaticRouter>);
+    } else {
+        return (<BrowserRouter>{props.children}</BrowserRouter>);
+    }
+};
+CurrentRouter.context = {};
 
 
-export default function Contents() {
+export default function Contents(props) {
     return (
         <div className="main">
             <div className="main__header">
@@ -22,62 +37,8 @@ export default function Contents() {
                 </header>
             </div>
             <div className="main__everythingElse">
-                <div className="main_heroSpacer"/>
-                <section className="hero" id="top">
-                    <div className="hero__content">
-                        <h1 className="hero__title">I make Websites that just work</h1>
-                        <div className="hero__subtitle">
-                            <div>My name is Nicolas Zerpa. I'm an experienced freelance web developer.</div>
-                            <div>I'm ready to build your next product, <strong className="hero__subtitleBold">and do it right</strong>.</div>
-                        </div>
-                        <div>
-                            <a className="button button--onDarkBg" data-type="hashLink" href="#contact-me">Contact Me</a>
-                        </div>
-                    </div>
-                </section>
-                <Portfolio/>
-                <section className="section section--center" id="skills">
-                    <div className="container">
-                        <h1 className="section__title">Skills</h1>
-                        <div className="skills">
-                            <div className="skills__skill">
-                                <div className="skills__logo"><i className="skills__logo__icon fab fa-js fa-3x"></i></div>
-                                <h2 className="skills__title">JavaScript</h2>
-                                <div className="skills__description">
-                                    It's the most important tool for the Web Developer.
-                                    <strong>I'm an expert in this language</strong>, as this is the first language I've ever
-                                    learned back in my teenage years.
-                                </div>
-                            </div>
-                            <div className="skills__skill">
-                                <div className="skills__logo"><i className="skills__logo__icon fab fa-html5 fa-3x"></i></div>
-                                <h2 className="skills__title">HTML &amp; CSS</h2>
-                                <div className="skills__description">
-                                    These two languages are the building blocks of the Internet.
-                                    I always strive to make <strong>lightweight and well-structured code</strong>
-                                    in order to ensure <strong>fast page load times</strong>.
-                                </div>
-                            </div>
-                            <div className="skills__skill">
-                                <div className="skills__logo"><i className="skills__logo__icon fab fa-react fa-3x"></i></div>
-                                <h2 className="skills__title">React</h2>
-                                <div className="skills__description">Created by Facebook, it's the go-to library if you need to build a complex
-                                    <strong>web application</strong>. I have an <strong>advanced level</strong> in this tool.
-                                </div>
-                            </div>
-                            <div className="skills__skill">
-                                <div className="skills__logo"><i className="skills__logo__icon fas fa-laptop fa-3x"></i></div>
-                                <h2 className="skills__title">Everything Else</h2>
-                                <div className="skills__description">
-                                    A professional developer never stops learning. That's why I can also work with
-                                    many non-front-end related technologies. For example, <strong>PHP, Java, Python, MySQL,
-                                        Node.js</strong> and others.
-                                </div>
-                            </div>    
-                        </div>
-                    </div>
-                </section>
-                <ContactForm/>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/blog/" exact component={Blog} />
                 <footer className="footer">
                     <div className="container">
                         <div className="footer__logoName">Nicolas Zerpa</div>
@@ -95,7 +56,7 @@ export default function Contents() {
                                     <span className="argentineFlag__sunOfMay"></span>
                                 </span>
                                 Made in Argentina
-                               </div>
+                            </div>
                         </div>
                     </div>
                 </footer>

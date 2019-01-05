@@ -8,10 +8,10 @@ export class Recaptcha extends React.Component {
         this.setRefDiv = this.setRefDiv.bind(this);
         this.initObserver = this.initObserver.bind(this);
         this.getRecaptchaResponse = this.getRecaptchaResponse.bind(this);
+        this.mounted = false;
     }
     setRefDiv(element) {
         this.ref_div = element;
-        this.initObserver();
     }
 
     getRecaptchaResponse(response) {
@@ -20,17 +20,31 @@ export class Recaptcha extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.mounted = true;
+        this.initObserver();
+    }
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
     initObserver() {
-        if (window.recaptcha_ok) {
-            window.grecaptcha.render(
-                this.ref_div,
-                {
-                    "sitekey": "6LcrkHsUAAAAAORnfAZ8Wrhhnt-t2WofIm31rWEW",
-                    "callback": this.getRecaptchaResponse
+        if (this.mounted) {
+            if (window.recaptcha_ok) {
+                try {
+                    window.grecaptcha.render(
+                        this.ref_div,
+                        {
+                            "sitekey": "6LcrkHsUAAAAAORnfAZ8Wrhhnt-t2WofIm31rWEW",
+                            "callback": this.getRecaptchaResponse
+                        }
+                    );
+                } catch(e) {
+                    setTimeout(this.initObserver, 250);
                 }
-            );
-        } else {
-            setTimeout(this.initObserver, 250);
+            } else {
+                setTimeout(this.initObserver, 250);
+            }
         }
     }
     

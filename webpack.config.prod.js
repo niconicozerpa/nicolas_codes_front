@@ -1,10 +1,12 @@
 "use strict";
+const path = require("path");
 const merge = require("webpack-merge");
 const config_common = require("./webpack.config.common.js");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
+const NodeExternals = require("webpack-node-externals");
 
-module.exports = merge(
+const config_client = merge(
     config_common,
     {
         "mode": "production",
@@ -18,3 +20,18 @@ module.exports = merge(
         ]
     }
 );
+
+const config_ssr = merge(
+    config_client,
+    {
+        "target": "node",
+        "externals": [ NodeExternals() ],
+        "entry": "./ssr/server.js",
+        "output": {
+            "path": path.resolve(__dirname, "ssr", "dist"),
+            "filename": "ssr.app.js"
+        },
+    });
+
+
+module.exports = [config_client, config_ssr];
