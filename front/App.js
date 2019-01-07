@@ -9,7 +9,15 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = _cloneDeep(State);
-        
+    
+        this.addHeaderMethodsToContext();
+        this.addPortfolioMethodsToContext();
+        this.addContactFormMethodsToContext();
+
+        this.addBlogMethodsToContext();
+    }
+
+    addHeaderMethodsToContext() {
         this.state.header_updateMobile = (val) => {
             this.setState({
                 "header_menu": {
@@ -17,7 +25,9 @@ export default class App extends React.Component {
                 }
             });
         };
+    }
 
+    addPortfolioMethodsToContext() {
         this.state.portfolio_load = () => {
             this.setState({
                 "portfolio": {
@@ -53,7 +63,9 @@ export default class App extends React.Component {
                 }
             });
         }
-
+    }
+        
+    addContactFormMethodsToContext() {
         this.state.contact_form_handleInput = (field, value) => {
             const new_state = _cloneDeep(this.state.contact_form);
             new_state.form[field] = value;
@@ -97,6 +109,46 @@ export default class App extends React.Component {
                 this.setState({ "contact_form": _cloneDeep(new_state) });
             });
         };
+    }
+
+    addBlogMethodsToContext() {
+        this.state.blog_load = (params) => {
+
+            this.setState({
+                "blog_loading": true,
+                "blog_posts": null,
+                "blog_specific_post": null
+            });
+
+            const new_state = {};
+
+            let url;
+            if (params.id) {
+                url = `${SERVICE_BASE_URL}/get-blog-article?id=${params.id}`;
+            } else {
+                let offset = parseInt(params.offset);
+                if (isNaN(offset)) {
+                    offset = 0;
+                }
+                url = `${SERVICE_BASE_URL}/list-blog-articles?offset=${offset}`;
+            }
+
+            fetch(url)
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.id) {
+                    new_state.blog_specific_post = response;
+                    new_state.blog_posts = null;
+                } else {
+                    new_state.blog_specific_post = null;
+                    new_state.blog_posts = response;
+                }
+            })
+            .finally(() => {
+                new_state.blog_loading = false;
+                this.setState(new_state);
+            })
+        }
     }
 
     render() {

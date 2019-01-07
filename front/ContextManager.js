@@ -10,7 +10,11 @@ export const DefaultContactForm = {
     "message": "",
     "location": "",
     "website": "",
-    "recaptcha": ""
+    "recaptcha": "",
+
+    "blog_posts": {},
+    "blog_loading": false,
+    "blog_specific_post": null
 };
 
 export const State = {

@@ -5,10 +5,7 @@ import { Route, Link } from "react-router-dom";
 
 import HeaderMenu from "./HeaderMenu.js";
 import HomePage from "./HomePage.js";
-
-function Blog() {
-    return <div><h1>Blog</h1></div>;
-}
+import Blog from "./Blog.js";
 
 function CurrentRouter(props) {
     if (props.mode == "server") {
@@ -27,7 +24,7 @@ export default function Contents(props) {
                 <header className="header">
                     <div className="header__container">
                         <div className="header__logo">
-                            <a href="#top" data-type="hashLink" className="header__logoLink">
+                            <a href="/#top" data-type="hashLink" className="header__logoLink">
                                 <span className="header__logoName">Nicolas Zerpa</span>
                                 <span className="header__logoDescription">Front-End Web Developer</span>
                             </a>
@@ -37,17 +34,20 @@ export default function Contents(props) {
                 </header>
             </div>
             <div className="main__everythingElse">
-            <Route path="/" exact component={HomePage} />
-            <Route path="/blog/" exact component={Blog} />
+                <Route path="/" exact component={HomePage} />
+                <Route path="/blog/" exact component={Blog} />
+                <Route path="/blog/more/:offset" exact component={Blog} />
+                <Route path="/blog/post/:slug/:id" exact component={Blog} />
                 <footer className="footer">
                     <div className="container">
                         <div className="footer__logoName">Nicolas Zerpa</div>
                         <div className="footer__logoDescription">Front-End Web Developer</div>
                         <nav className="footer__navbar">
-                            <a className="footer__navbar__link" data-type="hashLink" href="#top">Home</a>
-                            <a className="footer__navbar__link" data-type="hashLink" href="#my-work">My Work</a>
-                            <a className="footer__navbar__link" data-type="hashLink" href="#skills">Skills</a>
-                            <a className="footer__navbar__link" data-type="hashLink" href="#contact-me">Contact Me</a>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#top">Home</a>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#my-work">My Work</a>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#skills">Skills</a>
+                            <Link className="footer__navbar__link" to="/blog/">Blog</Link>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#contact-me">Contact Me</a>
                         </nav>
                         <div className="footer__copyright">
                             <div>© 2018 Raúl Nicolás López Zerpa</div>

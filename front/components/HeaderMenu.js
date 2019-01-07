@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { SiteContext } from "../ContextManager.js";
 
 export default class HeaderMenu extends React.Component {
@@ -28,9 +29,10 @@ export default class HeaderMenu extends React.Component {
             <div className="header__menuContainer">
                 <a href="" onClick={this.handleClickMobile} className="header__mobileButton">Menu</a>
                 <nav className={navbar_classes.join(" ")}>
-                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="#top">Home</a>
-                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="#my-work">My Work</a>
-                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="#skills">Skills</a>
+                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="/#top">Home</a>
+                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="/#my-work">My Work</a>
+                    <a data-type="hashLink" onClick={this.handleClickLink} className="header__navbarLink" href="/#skills">Skills</a>
+                    <Link to="/blog/" className="header__navbarLink">Blog</Link>
                     <a data-type="hashLink" onClick={this.handleClickLink} href="#contact-me" className="header__navbarLink">Contact Me</a>
                 </nav>
             </div>
