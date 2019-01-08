@@ -24,7 +24,7 @@ export default function Contents(props) {
                 <header className="header">
                     <div className="header__container">
                         <div className="header__logo">
-                            <a href="/#top" data-type="hashLink" className="header__logoLink">
+                            <a href="/" data-hash="#top" data-type="hashLink" className="header__logoLink">
                                 <span className="header__logoName">Nicolas Zerpa</span>
                                 <span className="header__logoDescription">Front-End Web Developer</span>
                             </a>
@@ -43,7 +43,7 @@ export default function Contents(props) {
                         <div className="footer__logoName">Nicolas Zerpa</div>
                         <div className="footer__logoDescription">Front-End Web Developer</div>
                         <nav className="footer__navbar">
-                            <a className="footer__navbar__link" data-type="hashLink" href="/#top">Home</a>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/" data-hash="#top">Home</a>
                             <a className="footer__navbar__link" data-type="hashLink" href="/#my-work">My Work</a>
                             <a className="footer__navbar__link" data-type="hashLink" href="/#skills">Skills</a>
                             <Link className="footer__navbar__link" to="/blog/">Blog</Link>

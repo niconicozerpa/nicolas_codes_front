@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function easeOut(current_time, initial_value, value_change, duration) {
             current_time /= duration;
-            return -value_change * current_time * (current_time - 2) + initial_value;
+            return Math.round(-value_change * current_time * (current_time - 2) + initial_value);
         };
 
         function getScrollableElement()
@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             requestAnimationFrame(doAnimatedScroll.animatedFunc);
                         }
                     }
+                    console.log(diff);
 
                     diff = to - div.scrollTop;
                 }
@@ -69,7 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function addHashLinkScroll(event) {
-            let elm_selector = event.currentTarget.getAttribute("href").split("#");
+            let elm_selector;
+            
+            if (event.currentTarget.hasAttribute("data-hash")) {
+                elm_selector = event.currentTarget.getAttribute("data-hash").split("#");
+            } else {
+                elm_selector = event.currentTarget.getAttribute("href").split("#");
+            }
+            
             elm_selector = "#" + elm_selector[elm_selector.length - 1];
             
             const target = document.querySelector(elm_selector);
