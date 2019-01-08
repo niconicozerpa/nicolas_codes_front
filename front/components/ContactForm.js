@@ -10,18 +10,20 @@ export class Recaptcha extends React.Component {
         this.getRecaptchaResponse = this.getRecaptchaResponse.bind(this);
         this.mounted = false;
 
-        if (typeof window.recaptcha_ok == "undefined") {
-            window.recaptcha_ok = false;
-            window.recaptchaIsOK = function() {
-                window.recaptcha_ok = true;
-            }
+        try {
+            if (typeof window.recaptcha_ok == "undefined") {
+                window.recaptcha_ok = false;
+                window.recaptchaIsOK = function() {
+                    window.recaptcha_ok = true;
+                }
 
-            const script = document.createElement("script");
-            script.setAttribute("async", "async");
-            script.setAttribute("defer", "defer");
-            script.setAttribute("src", "https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaIsOK");
-            document.body.appendChild(script);
-        }
+                const script = document.createElement("script");
+                script.setAttribute("async", "async");
+                script.setAttribute("defer", "defer");
+                script.setAttribute("src", "https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaIsOK");
+                document.body.appendChild(script);
+            }
+        } catch(e) {}
     }
     setRefDiv(element) {
         this.ref_div = element;

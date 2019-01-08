@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./front/App.js";
         
 document.addEventListener("DOMContentLoaded", () => {
-    ReactDOM.render(
+    ReactDOM.hydrate(
         <BrowserRouter>
             <App/>
         </BrowserRouter>,
