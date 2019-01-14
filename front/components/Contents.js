@@ -5,7 +5,7 @@ import { Route, Link } from "react-router-dom";
 
 import HeaderMenu from "./HeaderMenu.js";
 import HomePage from "./HomePage.js";
-import Blog from "./Blog.js";
+import Blog from "./Blog/Blog.js";
 
 function CurrentRouter(props) {
     if (props.mode == "server") {

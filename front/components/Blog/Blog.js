@@ -1,12 +1,16 @@
 "use strict";
 import React from "react";
 import MarkdownIt from "markdown-it";
-import { SiteContext } from "../ContextManager.js";
+import { SiteContext } from "../../ContextManager.js";
 import { Link } from "react-router-dom";
+import PageHeader from "../PageHeader.js";
+import SubscriptionForm from "./SubscriptionForm.js";
 
 function createSlug(text) {
     return String(text).trim().replace(" ", "-").replace(/[^a-zA-Z0-9\-\̣_]/g, "-");
 }
+
+
 
 function BlogPost(props) {
     const date_obj = new Date(props.date);
@@ -23,14 +27,17 @@ function BlogPost(props) {
         body_contents = <div className="blogPost__body" dangerouslySetInnerHTML={getBody()} />;
         lead_class.push("blogPost__lead--hasBody");
         about = (
-            <div className="blogAboutAuthor">
-                <div className="blogAboutAuthor__title">About the Author</div>
-                <div className="blogAboutAuthor__picture"></div>
-                <div className="blogAboutAuthor__bio">
-                    Nicolas Zerpa is a experienced Web Developer with more than 10 years of experience.
-                    During his career, he has worked with important clients who demanded robust and reliable
-                    websites visited my millions of people every day.
+            <div>
+                <div className="blogAboutAuthor">
+                    <div className="blogAboutAuthor__title">About the Author</div>
+                    <div className="blogAboutAuthor__picture"></div>
+                    <div className="blogAboutAuthor__bio">
+                        Nicolas Zerpa is a experienced Web Developer with more than 10 years of experience.
+                        During his career, he has worked with important clients who demanded robust and reliable
+                        websites visited my millions of people every day.
+                    </div>
                 </div>
+                <SubscriptionForm u={NEWSLETTER_U_FIELD} id={NEWSLETTER_ID_FIELD}/>
             </div>
         );
     }
@@ -45,16 +52,6 @@ function BlogPost(props) {
             {body_contents}
             {about}
         </article>
-    );
-}
-
-function PageHeader(props) {
-    return (
-        <section className="pageTitle">
-            <div className="container container--withSpace">
-                <h1 className="pageTitle__title">{props.title}</h1>
-            </div>
-        </section>
     );
 }
 
@@ -128,8 +125,8 @@ export default class Blog extends React.Component {
             if (this.context.blog_posts.more_items_available) {
                 const new_offset = this.context.blog_posts.offset;
                 blog_contents.push(
-                    <div class="blog__loadMore">
-                        <Link to={`/blog/more/${new_offset}`} className="button" key="load-more">Cargar más</Link>
+                    <div className="blog__loadMore" key="load-more">
+                        <Link to={`/blog/more/${new_offset}`} className="button">Cargar más</Link>
                     </div>
                 );
             }

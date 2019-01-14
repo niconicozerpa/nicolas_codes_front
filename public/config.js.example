@@ -1,2 +1,4 @@
 const SERVICE_BASE_URL = "http://...";
 const CONTACT_FORM_ENDPOINT = "http://...";
+const NEWSLETTER_U_FIELD = "...";
+const NEWSLETTER_ID_FIELD = "...";
