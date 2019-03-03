@@ -1,16 +1,11 @@
 "use strict";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import _curry from "lodash.curry";
 import { SiteContext } from "../ContextManager.js";
 
-export class Recaptcha extends React.Component {
-    constructor(props) {
-        super(props);
-        this.setRefDiv = this.setRefDiv.bind(this);
-        this.initObserver = this.initObserver.bind(this);
-        this.getRecaptchaResponse = this.getRecaptchaResponse.bind(this);
-        this.mounted = false;
 
+function createRecaptcha() {
+    const loadRecaptcha = function() {
         try {
             if (typeof window.recaptcha_ok == "undefined") {
                 window.recaptcha_ok = false;
@@ -24,54 +19,52 @@ export class Recaptcha extends React.Component {
                 script.setAttribute("src", "https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaIsOK");
                 document.body.appendChild(script);
             }
-        } catch(e) {}
-    }
-    setRefDiv(element) {
-        this.ref_div = element;
-    }
+        } catch(e) {};
+    };
 
-    getRecaptchaResponse(response) {
-        if (this.props.onChange) {
-            this.props.onChange(response);
-        }
-    }
+    return function Recaptcha(props) {
+        loadRecaptcha();
 
-    componentDidMount() {
-        this.mounted = true;
-        this.initObserver();
-    }
-    componentWillUnmount() {
-        this.mounted = false;
-    }
+        const div_elm = useRef(null);
 
-    initObserver() {
-        if (this.mounted) {
-            if (window.recaptcha_ok) {
-                try {
-                    window.grecaptcha.render(
-                        this.ref_div,
-                        {
-                            "sitekey": "6LcrkHsUAAAAAORnfAZ8Wrhhnt-t2WofIm31rWEW",
-                            "callback": this.getRecaptchaResponse
-                        }
-                    );
-                } catch(e) {
-                    setTimeout(this.initObserver, 250);
-                }
-            } else {
-                setTimeout(this.initObserver, 250);
+        const getRecaptchaResponse = function(response) {
+            if (props.onChange) {
+                props.onChange(response);
             }
         }
-    }
-    
-    render() {
+
+        useEffect(function() {
+            const initObserver = function() {
+                if (div_elm.current && div_elm.current.hasChildNodes()) return;
+
+                if (window.recaptcha_ok) {
+                    try {
+                        window.grecaptcha.render(
+                            div_elm.current,
+                            {
+                                "sitekey": "6LcrkHsUAAAAAORnfAZ8Wrhhnt-t2WofIm31rWEW",
+                                "callback": getRecaptchaResponse
+                            }
+                        );
+                    } catch(e) {
+                        setTimeout(initObserver, 250);
+                    }
+                } else {
+                    setTimeout(initObserver, 250);
+                }
+            };
+            initObserver();
+        });
+
         return (
             <div>
-                <div ref={this.setRefDiv}/>
+                <div ref={div_elm}/>
             </div>
         );
-    }
-}
+    };
+};
+
+export const Recaptcha = createRecaptcha();
 
 function createContactForm() {
     const handleInputBase = _curry(function(context, event) {
