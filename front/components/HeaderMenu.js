@@ -26,9 +26,10 @@ function HeaderMenuWithContext(context) {
             <a href="" onClick={handleClickMobile(context)} className="header__mobileButton">Menu</a>
             <nav className={navbar_classes.join(" ")}>
                 <a data-type="hashLink" onClick={handleClickLink(context)} className="header__navbarLink" href="/" data-hash="#top">Home</a>
+                <a data-type="hashLink" onClick={handleClickLink(context)} className="header__navbarLink" href="/#about">About</a>
                 <a data-type="hashLink" onClick={handleClickLink(context)} className="header__navbarLink" href="/#my-work">My Work</a>
-                <a data-type="hashLink" onClick={handleClickLink(context)} className="header__navbarLink" href="/#skills">Skills</a>
                 <Link to="/blog/" className="header__navbarLink">Blog</Link>
+                <a data-type="hashLink" onClick={handleClickLink(context)} className="header__navbarLink" href="/#skills">Skills</a>
                 <a data-type="hashLink" onClick={handleClickLink(context)} href="/#contact-me" className="header__navbarLink">Contact Me</a>
             </nav>
         </div>

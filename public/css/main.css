@@ -805,6 +805,12 @@ body {
     top: 0.5rem;
     animation: loading 1s linear infinite reverse;
 }
+.hr {
+    width: 4rem;
+    height: 0.4rem;
+    background-color: var(--secondary-color);
+    border: none;
+}
 
 @media (max-width: 770px) {
 

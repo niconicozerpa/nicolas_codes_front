@@ -27,7 +27,7 @@ function PortfolioWithContext(context) {
     ) : null;
 
     return (
-        <section className="section section--highlighted" id="my-work">
+        <section className="section" id="my-work">
             <div className="container">
                 <div className="columns columns--nomobile">
                     <div className="columns__column">

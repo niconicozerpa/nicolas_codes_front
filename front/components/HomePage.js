@@ -4,6 +4,20 @@ import Portfolio from "./Portfolio.js";
 import ContactForm from "./ContactForm.js";
 import HomeBlogWidget from "./Blog/HomeWidget.js";
 
+const AboutMe = () => (
+    <section className="section section--center section--highlighted" id="about">
+        <div className="container">
+            <h1 className="section__title">About Me</h1>
+            <p>Based in Buenos Aires, Argentina, I'm a software developer with have over a decade of
+                professional experience, working with both small and big clients. I'm focused on
+                web applications and websites, and I love to bridge the gap between technology and
+                my customer's needs.
+            </p>
+            <hr className="hr"/>
+        </div>
+    </section>
+);
+
 const Skills = () => (
     <section className="section section--center" id="skills">
         <div className="container">
@@ -64,9 +78,10 @@ export default function HomePage() {
                         </div>
                     </div>
                 </section>
+                <AboutMe/>
                 <Portfolio/>
-                <Skills/>
                 <HomeBlogWidget/>
+                <Skills/>
                 <ContactForm/>
             </div>
     );

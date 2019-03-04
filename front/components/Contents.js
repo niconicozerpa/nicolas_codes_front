@@ -44,13 +44,14 @@ export default function Contents(props) {
                         <div className="footer__logoDescription">Front-End Web Developer</div>
                         <nav className="footer__navbar">
                             <a className="footer__navbar__link" data-type="hashLink" href="/" data-hash="#top">Home</a>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#about">About</a>
                             <a className="footer__navbar__link" data-type="hashLink" href="/#my-work">My Work</a>
-                            <a className="footer__navbar__link" data-type="hashLink" href="/#skills">Skills</a>
                             <Link className="footer__navbar__link" to="/blog/">Blog</Link>
+                            <a className="footer__navbar__link" data-type="hashLink" href="/#skills">Skills</a>
                             <a className="footer__navbar__link" data-type="hashLink" href="/#contact-me">Contact Me</a>
                         </nav>
                         <div className="footer__copyright">
-                            <div>© 2018 Raúl Nicolás López Zerpa</div>
+                            <div>© 2019 Raúl Nicolás López Zerpa</div>
                             <div>
                                 <span className="argentineFlag">
                                     <span className="argentineFlag__sunOfMay"></span>
